@@ -1,3 +1,5 @@
+require('../scss/app.scss');
+
 var verticalCarousels = document.querySelectorAll(".vertical-carousel");
 
 verticalCarousels.forEach(function(item){
