@@ -1,22 +1,18 @@
-/* tag overrides */
 body{
-	font-family: "Open Sans", sans-serif;
+	font-family: "Montserrat", sans-serif;
 }
 
 h1{
 	font-size: 3.3rem;
-	font-family: "Montserrat", sans-serif;
 }
 
 h2{
 	font-size: 2.3rem;
-	font-family: "Montserrat", sans-serif;
 	text-align: center;
 }
 
 h3{
 	font-size: 1.2rem;
-	font-family: "Montserrat", sans-serif;
 	font-weight: normal;
 }
 
