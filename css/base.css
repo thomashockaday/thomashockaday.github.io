@@ -35,9 +35,12 @@
 	margin: 5% auto;
 }
 
+.highlight p{
+	padding: 10px 0;
+}
+
 .under{
 	margin-top: 40px;
-	text-align: center;
 }
 
 .under i{
