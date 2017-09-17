@@ -1,7 +1,10 @@
 RewriteEngine on
 
 ## REDIRECTS ##
-Redirect 301 / https://thomashockaday.github.io/dist/
+RewriteCond %{HTTP_HOST} ^thomashockaday.github.io$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.thomashockaday.github.io$
+RewriteCond %{REQUEST_URI} !dist/
+RewriteRule (.*) /dist/$1 [L]
 
 ## LANGUAGE ##
 AddDefaultCharset UTF-8
