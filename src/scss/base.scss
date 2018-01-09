@@ -1,133 +1,123 @@
-.vertical-carousel{
-	height: 40px;
+.vertical-carousel {
+  height: 40px;
 }
 
-.vertical-carousel ul, .vertical-carousel span{
-	display: inline-block;
-	vertical-align: top;
-	height: inherit;
+.vertical-carousel ul, .vertical-carousel span {
+  display: inline-block;
+  vertical-align: top;
+  height: inherit;
 }
 
-.vertical-carousel ul{
-	list-style: none;
-	overflow: hidden;
-	color: #8befef;
-	border-bottom: 2px solid white;
+.vertical-carousel ul {
+  list-style: none;
+  overflow: hidden;
+  color: #8befef;
+  border-bottom: 2px solid white;
 }
 
-.vertical-carousel li{
-	position: relative;
-	top: 0;
-	transition: top 1s;
-	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+.vertical-carousel li {
+  position: relative;
+  top: 0;
+  transition: top 1s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-
-
-.container{
-	padding: 0 10%;
+.container {
+  padding: 0 10%;
 }
 
-.highlight{
-	padding: 10% 20%;
-	text-align: center;
-	line-height: 2;
-	margin: 5% auto;
+.highlight {
+  padding: 10% 20%;
+  text-align: center;
+  line-height: 2;
+  margin: 5% auto;
 }
 
-.highlight p{
-	padding: 10px 0;
+.highlight p {
+  padding: 10px 0;
 }
 
-.under{
-	margin-top: 40px;
+.under {
+  margin-top: 40px;
 }
 
-.under i{
-	margin: 0 20px;
-	font-size: 2rem;
+.under i {
+  margin: 0 20px;
+  font-size: 2rem;
 }
 
-
-
-.skew{
-	padding-top: 8%;
-	padding-bottom: 8%;
-	-webkit-transform-origin: left top;
-		-ms-transform-origin: left top;
-			transform-origin: left top;
-	-webkit-transform: skew(0deg, 5deg);
-      	-ms-transform: skew(0deg, 5deg);
-          	transform: skew(0deg, 5deg);
+.skew {
+  padding-top: 8%;
+  padding-bottom: 8%;
+  -webkit-transform-origin: left top;
+  -ms-transform-origin: left top;
+  transform-origin: left top;
+  -webkit-transform: skew(0deg, 5deg);
+  -ms-transform: skew(0deg, 5deg);
+  transform: skew(0deg, 5deg);
 }
 
-.skew > *{
-	-webkit-transform: skew(0deg, -5deg);
-    	-ms-transform: skew(0deg, -5deg);
-          	transform: skew(0deg, -5deg);
+.skew > * {
+  -webkit-transform: skew(0deg, -5deg);
+  -ms-transform: skew(0deg, -5deg);
+  transform: skew(0deg, -5deg);
 }
 
-.backskew{
-	-webkit-transform: skew(0deg, -5deg);
-    	-ms-transform: skew(0deg, -5deg);
-          	transform: skew(0deg, -5deg);
+.backskew {
+  -webkit-transform: skew(0deg, -5deg);
+  -ms-transform: skew(0deg, -5deg);
+  transform: skew(0deg, -5deg);
 }
 
-.backskew > *{
-	-webkit-transform: skew(0deg, 5deg);
-      	-ms-transform: skew(0deg, 5deg);
-          	transform: skew(0deg, 5deg);
+.backskew > * {
+  -webkit-transform: skew(0deg, 5deg);
+  -ms-transform: skew(0deg, 5deg);
+  transform: skew(0deg, 5deg);
 }
 
-
-
-.grid{
-	font-size: 0;
+.grid {
+  font-size: 0;
 }
 
-.grid-cell{
-	font-size: 1rem;
-	padding: 8% 15%;
-	margin-top: 8%;
-	margin-right: 5%;
-	background: white;
-	display: inline-block;
+.grid-cell {
+  font-size: 1rem;
+  padding: 8% 15%;
+  margin-top: 8%;
+  margin-right: 5%;
+  background: white;
+  display: inline-block;
 }
 
-.grid-cell:nth-child(3n){
-	margin-right: 0;
+.grid-cell:nth-child(3n) {
+  margin-right: 0;
 }
 
-
-
-.popout{
-	transition: box-shadow 0.2s, transform 0.2s;
-	transition-timing-function: cubic-bezier(0.68, 0.68, 0.265, 1.55);
+.popout {
+  transition: box-shadow 0.2s, transform 0.2s;
+  transition-timing-function: cubic-bezier(0.68, 0.68, 0.265, 1.55);
 }
 
-.popout:hover{
-	box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.4);
-	transform: scale(1.02);
+.popout:hover {
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.4);
+  transform: scale(1.02);
 }
 
+@media only screen and (max-width: 768px) {
+  .highlight {
+    padding: 50px 10%;
+    text-align: left;
+    margin-top: 15%;
+  }
 
+  .skew {
+    padding-bottom: 20%;
+  }
 
-@media only screen and (max-width: 768px){
-	.highlight{
-		padding: 50px 10%;
-		text-align: left;
-		margin-top: 15%;
-	}
+  .grid-cell, .grid-cell:nth-child(3n) {
+    margin-right: 10%;
+  }
 
-	.skew{
-		padding-bottom: 20%;
-	}
-
-	.grid-cell, .grid-cell:nth-child(3n){
-		margin-right: 10%;
-	}
-
-	.grid-cell:nth-child(even){
-		margin-right: 0;
-	}
+  .grid-cell:nth-child(even) {
+    margin-right: 0;
+  }
 }
