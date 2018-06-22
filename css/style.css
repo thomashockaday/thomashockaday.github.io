@@ -1,20 +1,31 @@
-/* Reset */
+/*
+ * ------------------------
+ * Contents
+ * ------------------------
+ * 1. Simple Reset
+ * 2. Semantic Markup
+ * 3. Base Classes
+ * 4. Components
+ *    4.1. Vertical Carousel
+ *    4.2. Skewed Containers
+ *    4.3. Grids
+ *    4.4. Popout Boxes
+ * 5. Section Specific
+ * 6. Media Queries
+ */
+
+/* 1. Simple Reset */
 * {
   margin: 0;
   padding: 0;
 }
 
-html {
-  font-size: 16px;
-}
-
-body {
-  font-family: sans-serif;
-  line-height: 1.5;
-}
-
 header, section, footer, aside, nav, main, article, figure {
   display: block;
+}
+
+html {
+  font-size: 16px;
 }
 
 a {
@@ -22,25 +33,10 @@ a {
   text-decoration: none;
 }
 
-input[type="text"], input[type="password"], textarea {
-  outline: none;
-  border: none;
-  font-size: 1rem;
-  font-family: inherit;
-  border-radius: 0;
-}
-
-button {
-  border-radius: 0;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  box-sizing: content-box;
-}
-
-/* Main styles */
+/* 2. Semantic Markup */
 body {
   font-family: "Montserrat", sans-serif;
+  line-height: 1.5;
   color: #111;
 }
 
@@ -72,38 +68,6 @@ a:hover, a:active {
   color: #3ea7c7;
 }
 
-.intro {
-  padding-top: 20%;
-  padding-bottom: 20%;
-}
-
-.work {
-  background: linear-gradient(225deg, #38aecc 10%, #347fb9 90%);
-  color: #fff;
-  padding-top: 15%;
-  padding-bottom: 30%;
-}
-
-.grid-cell {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 7px solid #fff;
-  padding: 8% calc(15% - 7px);
-}
-
-.grid-cell:nth-child(1) {
-  background-image: url(../img/gotraining.png);
-}
-
-.grid-cell:nth-child(2) {
-  background-image: url(../img/simon.png);
-}
-
-.grid-cell:nth-child(3) {
-  background-image: url(../img/loremjs.png);
-}
-
 footer {
   margin-top: -20%;
   background: #fff;
@@ -114,30 +78,7 @@ footer p {
   margin-top: 10%;
 }
 
-.vertical-carousel {
-  height: 40px;
-}
-
-.vertical-carousel ul, .vertical-carousel span {
-  display: inline-block;
-  vertical-align: top;
-  height: inherit;
-}
-
-.vertical-carousel ul {
-  list-style: none;
-  overflow: hidden;
-  color: #8befef;
-  border-bottom: 2px solid white;
-}
-
-.vertical-carousel li {
-  position: relative;
-  top: 0;
-  transition: top 1s;
-  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
+/* 3. Base Classes */
 .container {
   padding: 0 10%;
 }
@@ -162,6 +103,33 @@ footer p {
   font-size: 2rem;
 }
 
+/* 4. Components */
+/* 4.1. Vertical Carousel */
+.vertical-carousel {
+  height: 40px;
+}
+
+.vertical-carousel ul, .vertical-carousel span {
+  display: inline-block;
+  vertical-align: top;
+  height: inherit;
+}
+
+.vertical-carousel ul {
+  list-style: none;
+  overflow: hidden;
+  color: #8befef;
+  border-bottom: 2px solid white;
+}
+
+.vertical-carousel li {
+  position: relative;
+  top: 0;
+  transition: top 1s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* 4.2. Skewed Containers */
 .skew {
   padding-top: 8%;
   padding-bottom: 8%;
@@ -191,6 +159,7 @@ footer p {
   transform: skew(0deg, 5deg);
 }
 
+/* 4.3. Grids */
 .grid {
   font-size: 0;
 }
@@ -208,6 +177,27 @@ footer p {
   margin-right: 0;
 }
 
+.grid-cell {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 7px solid #fff;
+  padding: 8% calc(15% - 7px);
+}
+
+.grid-cell:nth-child(1) {
+  background-image: url(../img/gotraining.png);
+}
+
+.grid-cell:nth-child(2) {
+  background-image: url(../img/simon.png);
+}
+
+.grid-cell:nth-child(3) {
+  background-image: url(../img/loremjs.png);
+}
+
+/* 4.4. Popout Boxes */
 .popout {
   transition: box-shadow 0.2s, transform 0.2s;
   transition-timing-function: cubic-bezier(0.68, 0.68, 0.265, 1.55);
@@ -218,6 +208,20 @@ footer p {
   transform: scale(1.02);
 }
 
+/* 5. Section Specific */
+.intro {
+  padding-top: 20%;
+  padding-bottom: 20%;
+}
+
+.work {
+  background: linear-gradient(225deg, #38aecc 10%, #347fb9 90%);
+  color: #fff;
+  padding-top: 15%;
+  padding-bottom: 30%;
+}
+
+/* 6. Media Queries */
 @media only screen and (max-width: 768px) {
   h1 {
     font-size: 2.5rem;
