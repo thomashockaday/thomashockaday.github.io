@@ -3,8 +3,9 @@ let verticalCarousels = document.querySelectorAll(".vertical-carousel");
 verticalCarousels.forEach(function (item) {
     let itemHeight = item.offsetHeight;
     let topVal = 0;
-    item.style.lineHeight = itemHeight + "px";
     let items = item.querySelectorAll("li");
+
+    item.style.lineHeight = `${itemHeight}px`;
 
     let interval = window.setInterval(function () {
         topVal -= itemHeight;
@@ -14,7 +15,7 @@ verticalCarousels.forEach(function (item) {
         }
 
         items.forEach(function (li) {
-            li.style.top = topVal + "px";
+            li.style.top = `${topVal}px`;
         });
     }, 1600);
 });
