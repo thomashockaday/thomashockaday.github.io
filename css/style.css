@@ -36,8 +36,9 @@ a {
 /* 2. Semantic Markup */
 body {
   font-family: "Montserrat", sans-serif;
-  line-height: 1.5;
+  line-height: 2;
   color: #111;
+  background: #fff;
 }
 
 h1 {
@@ -53,12 +54,6 @@ h3 {
   font-weight: normal;
 }
 
-header {
-  background: linear-gradient(225deg, #38aecc 10%, #347fb9 90%);
-  color: #fff;
-  margin-top: -10%;
-}
-
 a {
   color: #3880b7;
   font-weight: 500;
@@ -69,7 +64,6 @@ a:hover, a:active {
 }
 
 footer {
-  background: #fff;
   text-align: right;
 }
 
@@ -78,15 +72,18 @@ footer {
   padding: 10%;
 }
 
+.gradient {
+  background: linear-gradient(225deg, #38aecc 10%, #347fb9 90%);
+  color: #fff;
+}
+
 .highlight {
   padding: 10% 20%;
   text-align: center;
-  line-height: 2;
-  margin: 10% auto 0 auto;
 }
 
 .highlight p {
-  padding: 10px 0;
+  padding: 2% 0;
 }
 
 .under {
@@ -114,7 +111,7 @@ footer {
   list-style: none;
   overflow: hidden;
   color: #8befef;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #fff;
 }
 
 .vertical-carousel li {
@@ -126,12 +123,9 @@ footer {
 
 /* 4.2. Skewed Containers */
 .skew {
-  -webkit-transform-origin: left top;
-  -ms-transform-origin: left top;
-  transform-origin: left top;
-  -webkit-transform: skew(0deg, 5deg);
-  -ms-transform: skew(0deg, 5deg);
-  transform: skew(0deg, 5deg);
+  -webkit-transform: skew(0deg, 5deg) translate(0, -15%);
+  -ms-transform: skew(0deg, 5deg) translate(0, -15%);
+  transform: skew(0deg, 5deg) translate(0, -15%);
 }
 
 .skew > * {
@@ -149,7 +143,7 @@ footer {
 }
 
 .grid-cell {
-  background: white;
+  background: #fff;
   padding: 30%;
 }
 
@@ -189,11 +183,6 @@ footer {
   padding-bottom: 20%;
 }
 
-.work {
-  background: linear-gradient(225deg, #38aecc 10%, #347fb9 90%);
-  color: #fff;
-}
-
 /* 6. Media Queries */
 @media only screen and (max-width: 768px) {
   h1 {
@@ -207,7 +196,7 @@ footer {
   .highlight {
     padding: 5% 10%;
     text-align: left;
-    margin-top: 15%;
+    margin-top: 10%;
   }
 
   .skew {
