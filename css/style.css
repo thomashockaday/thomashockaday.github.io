@@ -161,28 +161,19 @@ footer p {
 
 /* 4.3. Grids */
 .grid {
-  font-size: 0;
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-gap: 5%;
+  margin: 8% 0;
 }
 
 .grid-cell {
-  font-size: 1rem;
-  padding: 8% 15%;
-  margin-top: 8%;
-  margin-right: 5%;
   background: white;
-  display: inline-block;
-}
-
-.grid-cell:nth-child(3n) {
-  margin-right: 0;
-}
-
-.grid-cell {
+  padding: 30%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   border: 7px solid #fff;
-  padding: 8% calc(15% - 7px);
 }
 
 .grid-cell:nth-child(1) {
@@ -229,7 +220,6 @@ footer p {
 
   .grid-cell {
     border: 5px solid #fff;
-    padding: 12% calc(22.5% - 5px);
   }
 
   .highlight {
@@ -240,13 +230,5 @@ footer p {
 
   .skew {
     padding-bottom: 20%;
-  }
-
-  .grid-cell, .grid-cell:nth-child(3n) {
-    margin-right: 10%;
-  }
-
-  .grid-cell:nth-child(even) {
-    margin-right: 0;
   }
 }
