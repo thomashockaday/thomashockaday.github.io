@@ -69,25 +69,20 @@ a:hover, a:active {
 }
 
 footer {
-  margin-top: -20%;
   background: #fff;
   text-align: right;
 }
 
-footer p {
-  margin-top: 10%;
-}
-
 /* 3. Base Classes */
 .container {
-  padding: 0 10%;
+  padding: 10%;
 }
 
 .highlight {
   padding: 10% 20%;
   text-align: center;
   line-height: 2;
-  margin: 5% auto;
+  margin: 10% auto 0 auto;
 }
 
 .highlight p {
@@ -131,8 +126,6 @@ footer p {
 
 /* 4.2. Skewed Containers */
 .skew {
-  padding-top: 8%;
-  padding-bottom: 8%;
   -webkit-transform-origin: left top;
   -ms-transform-origin: left top;
   transform-origin: left top;
@@ -147,18 +140,6 @@ footer p {
   transform: skew(0deg, -5deg);
 }
 
-.backskew {
-  -webkit-transform: skew(0deg, -5deg);
-  -ms-transform: skew(0deg, -5deg);
-  transform: skew(0deg, -5deg);
-}
-
-.backskew > * {
-  -webkit-transform: skew(0deg, 5deg);
-  -ms-transform: skew(0deg, 5deg);
-  transform: skew(0deg, 5deg);
-}
-
 /* 4.3. Grids */
 .grid {
   display: grid;
@@ -170,6 +151,9 @@ footer p {
 .grid-cell {
   background: white;
   padding: 30%;
+}
+
+.grid-cell {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -208,8 +192,6 @@ footer p {
 .work {
   background: linear-gradient(225deg, #38aecc 10%, #347fb9 90%);
   color: #fff;
-  padding-top: 15%;
-  padding-bottom: 30%;
 }
 
 /* 6. Media Queries */
@@ -223,7 +205,7 @@ footer p {
   }
 
   .highlight {
-    padding: 50px 10%;
+    padding: 5% 10%;
     text-align: left;
     margin-top: 15%;
   }
