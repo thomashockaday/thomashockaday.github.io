@@ -57,7 +57,7 @@ h3 {
 a {
   color: #3880b7;
   font-weight: 500;
-  border-bottom: 1px solid currentColor; 
+  border-bottom: 1px solid currentColor;
 }
 
 a:hover, a:active {
@@ -139,8 +139,9 @@ footer {
 /* 4.3. Grids */
 .grid {
   display: grid;
-  grid-template-columns: 30% 30% 30%;
-  grid-gap: 5%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 5%;
+  grid-row-gap: 25px;
   margin: 8% 0;
 }
 
@@ -192,8 +193,7 @@ footer {
   }
 
   .grid {
-    grid-template-columns: 100%;
-    grid-gap: 25px;
+    grid-template-columns: 1fr;
   }
 
   .grid-cell {
