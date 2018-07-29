@@ -142,7 +142,7 @@ footer {
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 5%;
   grid-row-gap: 25px;
-  margin: 8% 0;
+  margin: 7.5% 0;
 }
 
 .grid-cell {
