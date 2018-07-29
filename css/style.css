@@ -145,11 +145,12 @@ footer {
 .grid-cell {
   display: inline-block;
   width: 30%;
-  height: 200px;
+  height: auto;
   margin: 0 1.66%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+}
+
+.grid-cell img {
+  width: 100%;
 }
 
 @supports (display: grid) {
@@ -158,30 +159,13 @@ footer {
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 5%;
     grid-row-gap: 25px;
-    font-size: 1rem;
   }
 
   .grid-cell {
     width: auto;
-    height: 0;
     margin: 0;
-    padding: 30%;
     border: 7px solid #fff;
   }
-}
-
-
-
-.grid-cell:nth-child(1) {
-  background-image: url(../img/gotraining.png);
-}
-
-.grid-cell:nth-child(2) {
-  background-image: url(../img/simon.png);
-}
-
-.grid-cell:nth-child(3) {
-  background-image: url(../img/loremjs.png);
 }
 
 /* 4.4. Popout Boxes */
