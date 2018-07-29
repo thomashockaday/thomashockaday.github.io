@@ -138,24 +138,39 @@ footer {
 
 /* 4.3. Grids */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 5%;
-  grid-row-gap: 25px;
   margin: 7.5% 0;
+  font-size: 0;
 }
 
 .grid-cell {
-  background: #fff;
-  padding: 30%;
-}
-
-.grid-cell {
+  display: inline-block;
+  width: 30%;
+  height: 200px;
+  margin: 0 1.66%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  border: 7px solid #fff;
 }
+
+@supports (display: grid) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 5%;
+    grid-row-gap: 25px;
+    font-size: 1rem;
+  }
+
+  .grid-cell {
+    width: auto;
+    height: 0;
+    margin: 0;
+    padding: 30%;
+    border: 7px solid #fff;
+  }
+}
+
+
 
 .grid-cell:nth-child(1) {
   background-image: url(../img/gotraining.png);
