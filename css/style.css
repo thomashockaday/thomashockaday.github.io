@@ -50,14 +50,14 @@ h3 {
 }
 
 a {
-  color: #3880b7;
+  color: #236ea8;
   font-weight: 500;
   text-decoration: none;
   border-bottom: 1px solid currentColor;
 }
 
 a:hover, a:active, a:focus {
-  color: #3ea7c7;
+  color: #279dbb;
 }
 
 footer {
@@ -70,8 +70,8 @@ footer {
 }
 
 .gradient {
-  background-color: #38aecc;
-  background-image: linear-gradient(225deg, #38aecc 10%, #347fb9 90%);
+  background-color: #236ea8;
+  background-image: linear-gradient(225deg, #279dbb 10%, #236ea8 90%);
   color: #fff;
 }
 
