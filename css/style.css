@@ -90,9 +90,11 @@ footer {
   background-image: linear-gradient(225deg, var(--light-blue) 10%, var(--dark-blue) 90%);
 }
 
-.highlight {
-  padding: 10% 20%;
-  text-align: center;
+@media only screen and (min-width: 769px) {
+  .highlight {
+    padding: 10% 20%;
+    text-align: center;
+  }
 }
 
 .highlight p {
@@ -199,7 +201,7 @@ footer {
 /* 6. Media Queries */
 @media only screen and (max-width: 768px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
 
   .grid-cell {
@@ -218,13 +220,11 @@ footer {
     }
   }
 
-  .highlight {
-    padding: 5% 10%;
-    text-align: left;
-    margin-top: 10%;
-  }
-
   .skew {
     padding-bottom: 20%;
+  }
+
+  .contact-links a {
+    margin: 0 20px 0 0;
   }
 }
