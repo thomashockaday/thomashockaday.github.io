@@ -77,9 +77,17 @@ footer {
 }
 
 .gradient {
+  position: relative;
+  color: #fff;
+}
+
+.gradient::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -1;
   background-color: var(--dark-blue);
   background-image: linear-gradient(225deg, var(--light-blue) 10%, var(--dark-blue) 90%);
-  color: #fff;
 }
 
 .highlight {
@@ -119,11 +127,16 @@ footer {
 
 /* 4.2. Skewed Containers */
 .skew {
-  transform: skew(0deg, 5deg) translate(0, -15%);
+  position: relative;
 }
 
-.skew > * {
-  transform: skew(0deg, -5deg);
+.skew::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -1;
+  transform: skew(0deg, 5deg);
+  transform-origin: top right;
 }
 
 /* 4.3. Grids */
