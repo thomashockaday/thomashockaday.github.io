@@ -2,6 +2,7 @@
  * ------------------------
  * Contents
  * ------------------------
+ * 0. Variables
  * 1. Simple Reset
  * 2. Semantic Markup
  * 3. Base Classes
@@ -13,6 +14,13 @@
  * 5. Section Specific
  * 6. Media Queries
  */
+
+/* 0. Variables */
+:root {
+  --dark-blue: #236ea8;
+  --light-blue: #279dbb;
+  --lighter-blue: #8befef;
+}
 
 /* 1. Simple Reset */
 * {
@@ -50,14 +58,14 @@ h3 {
 }
 
 a {
-  color: #236ea8;
+  color: var(--dark-blue);
   font-weight: 500;
   text-decoration: none;
   border-bottom: 1px solid currentColor;
 }
 
 a:hover, a:active, a:focus {
-  color: #279dbb;
+  color: var(--light-blue);
 }
 
 footer {
@@ -70,8 +78,8 @@ footer {
 }
 
 .gradient {
-  background-color: #236ea8;
-  background-image: linear-gradient(225deg, #279dbb 10%, #236ea8 90%);
+  background-color: var(--dark-blue);
+  background-image: linear-gradient(225deg, var(--light-blue) 10%, var(--dark-blue) 90%);
   color: #fff;
 }
 
@@ -107,7 +115,7 @@ footer {
 .vertical-carousel ul {
   list-style: none;
   overflow: hidden;
-  color: #8befef;
+  color: var(--lighter-blue);
   border-bottom: 2px solid #fff;
 }
 
