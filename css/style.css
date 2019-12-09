@@ -59,7 +59,6 @@ h3 {
 
 a {
   color: var(--dark-blue);
-  font-weight: 500;
   text-decoration: none;
   border-bottom: 1px solid currentColor;
 }
@@ -90,14 +89,6 @@ footer {
 
 .highlight p {
   padding: 2% 0;
-}
-
-.contact-links {
-  margin-top: 40px;
-}
-
-.contact-links a {
-  margin: 0 20px;
 }
 
 /* 4. Components */
@@ -182,6 +173,14 @@ footer {
 .intro {
   padding-top: 20%;
   padding-bottom: 20%;
+}
+
+.contact-links {
+  margin-top: 40px;
+}
+
+.contact-links a {
+  margin: 0 20px;
 }
 
 /* 6. Media Queries */
