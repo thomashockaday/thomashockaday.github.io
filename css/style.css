@@ -177,6 +177,10 @@ footer {
 .popout {
   transition: box-shadow 0.2s, transform 0.2s;
   transition-timing-function: cubic-bezier(0.68, 0.68, 0.265, 1.55);
+  background-size: cover;
+  background-position: center;
+  font-size: 0;
+  height: 180px;
 }
 
 .popout:hover {
