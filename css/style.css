@@ -20,6 +20,8 @@
   --dark-blue: #236ea8;
   --light-blue: #279dbb;
   --lighter-blue: #8befef;
+  --dark-grey: #20292f;
+  --darker-grey: #101518;
 }
 
 /* 1. Simple Reset */
@@ -40,7 +42,7 @@ html {
 body {
   font-family: "Montserrat", sans-serif;
   line-height: 2;
-  color: #111;
+  color: var(--darker-grey);
   background: #fff;
 }
 
@@ -60,11 +62,12 @@ h3 {
 a {
   color: var(--dark-blue);
   text-decoration: none;
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px dashed currentColor;
 }
 
 a:hover, a:active, a:focus {
   color: var(--light-blue);
+  border-bottom: 1px solid currentColor;
 }
 
 footer {
@@ -86,8 +89,16 @@ footer {
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
   z-index: -1;
+}
+
+.gradient-blue::before {
   background-color: var(--dark-blue);
   background-image: linear-gradient(225deg, var(--light-blue) 10%, var(--dark-blue) 90%);
+}
+
+.gradient-grey::before {
+  background-color: var(--darker-grey);
+  background-image: linear-gradient(225deg, var(--dark-grey) 10%, var(--darker-grey) 90%);
 }
 
 @media only screen and (min-width: 769px) {
@@ -171,6 +182,10 @@ footer {
     margin: 0;
     border: 7px solid #fff;
   }
+
+  .grid-cell:hover, .grid-cell:active, .grid-cell:focus {
+    border: 7px solid #fff;
+  }
 }
 
 /* 4.4. Popout Boxes */
@@ -190,8 +205,7 @@ footer {
 
 /* 5. Section Specific */
 .intro {
-  padding-top: 20%;
-  padding-bottom: 20%;
+  padding: 15% 10%;
 }
 
 .contact-links {
@@ -205,7 +219,7 @@ footer {
 /* 6. Media Queries */
 @media only screen and (max-width: 768px) {
   h1 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
   }
 
   .grid-cell {
