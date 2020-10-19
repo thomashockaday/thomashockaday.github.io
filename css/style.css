@@ -165,16 +165,13 @@ footer {
   margin: 0 1.66%;
 }
 
-.grid-cell img {
-  width: 100%;
-}
-
 @supports (display: grid) {
   .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 5%;
     grid-row-gap: 25px;
+    font-size: 1rem;
   }
 
   .grid-cell {
@@ -194,8 +191,8 @@ footer {
   transition-timing-function: cubic-bezier(0.68, 0.68, 0.265, 1.55);
   background-size: cover;
   background-position: center;
-  font-size: 0;
   height: 180px;
+  font-size: 0;
 }
 
 .popout:hover {
