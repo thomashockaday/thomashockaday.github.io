@@ -11,6 +11,7 @@
  *    4.2. Skewed Containers
  *    4.3. Grids
  *    4.4. Popout Boxes
+ *    4.5. Cards
  * 5. Section Specific
  * 6. Media Queries
  */
@@ -55,8 +56,12 @@ h2 {
 }
 
 h3 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: normal;
+}
+
+p {
+  margin-top: 10px;
 }
 
 a {
@@ -177,11 +182,6 @@ footer {
   .grid-cell {
     width: auto;
     margin: 0;
-    border: 7px solid #fff;
-  }
-
-  .grid-cell:hover, .grid-cell:active, .grid-cell:focus {
-    border: 7px solid #fff;
   }
 }
 
@@ -189,15 +189,27 @@ footer {
 .popout {
   transition: box-shadow 0.2s, transform 0.2s;
   transition-timing-function: cubic-bezier(0.68, 0.68, 0.265, 1.55);
-  background-size: cover;
-  background-position: center;
-  height: 180px;
-  font-size: 0;
 }
 
 .popout:hover {
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
   transform: scale(1.02);
+}
+
+/* 4.5. Cards */
+.card-header {
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.card-body h3 {
+  margin: 20px 0;
+}
+
+.card-body a {
+  color: currentColor;
 }
 
 /* 5. Section Specific */
@@ -222,7 +234,6 @@ footer {
   .grid-cell {
     margin: 8% 0 0 0;
     width: 100%;
-    border: 5px solid #fff;
   }
 
   @supports (display: grid) {
