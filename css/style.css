@@ -31,7 +31,14 @@
   padding: 0;
 }
 
-header, section, footer, aside, nav, main, article, figure {
+header,
+section,
+footer,
+aside,
+nav,
+main,
+article,
+figure {
   display: block;
 }
 
@@ -66,7 +73,9 @@ a {
   border-bottom: 1px dashed currentColor;
 }
 
-a:hover, a:active, a:focus {
+a:hover,
+a:active,
+a:focus {
   color: var(--light-blue);
   border-bottom: 1px solid currentColor;
 }
@@ -86,20 +95,31 @@ footer {
 }
 
 .gradient::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: -1;
 }
 
 .gradient-blue::before {
   background-color: var(--dark-blue);
-  background-image: linear-gradient(225deg, var(--light-blue) 10%, var(--dark-blue) 90%);
+  background-image: linear-gradient(
+    225deg,
+    var(--light-blue) 10%,
+    var(--dark-blue) 90%
+  );
 }
 
 .gradient-grey::before {
   background-color: var(--darker-grey);
-  background-image: linear-gradient(225deg, var(--dark-grey) 10%, var(--darker-grey) 90%);
+  background-image: linear-gradient(
+    225deg,
+    var(--dark-grey) 10%,
+    var(--darker-grey) 90%
+  );
 }
 
 @media only screen and (min-width: 769px) {
@@ -119,7 +139,8 @@ footer {
   height: 40px;
 }
 
-.vertical-carousel ul, .vertical-carousel span {
+.vertical-carousel ul,
+.vertical-carousel span {
   display: inline-block;
   vertical-align: top;
   height: inherit;
@@ -145,9 +166,12 @@ footer {
 }
 
 .skew::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: -1;
   transform: skew(0deg, 5deg);
   transform-origin: top right;
