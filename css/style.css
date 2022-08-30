@@ -58,6 +58,7 @@ h1 {
 
 h2 {
   font-size: 2.3rem;
+  margin-bottom: 1%;
 }
 
 h3 {
@@ -78,8 +79,14 @@ a:focus {
   border-bottom: 1px solid currentColor;
 }
 
+ul {
+  list-style-position: inside;
+  list-style-type: square;
+}
+
 footer {
   text-align: right;
+  padding: 5% 10%;
 }
 
 /* 3. Base Classes */
@@ -151,7 +158,6 @@ footer {
 
 /* 4.2. Grids */
 .grid {
-  margin: 7.5% 0;
   font-size: 0;
 }
 
@@ -178,6 +184,10 @@ footer {
 }
 
 /* 4.3. Cards */
+.card-list {
+  margin-top: 5%;
+}
+
 .card-header {
   background-size: cover;
   background-position: center;
