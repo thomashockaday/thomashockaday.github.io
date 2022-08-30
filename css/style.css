@@ -7,11 +7,10 @@
  * 2. Semantic Markup
  * 3. Base Classes
  * 4. Components
- *    4.1. Vertical Carousel
- *    4.2. Skewed Containers
- *    4.3. Grids
- *    4.4. Popout Boxes
- *    4.5. Cards
+ *    4.1. Skewed Containers
+ *    4.2. Grids
+ *    4.3. Popout Boxes
+ *    4.4. Cards
  * 5. Section Specific
  * 6. Media Queries
  */
@@ -134,33 +133,7 @@ footer {
 }
 
 /* 4. Components */
-/* 4.1. Vertical Carousel */
-.vertical-carousel {
-  height: 40px;
-}
-
-.vertical-carousel ul,
-.vertical-carousel span {
-  display: inline-block;
-  vertical-align: top;
-  height: inherit;
-}
-
-.vertical-carousel ul {
-  list-style: none;
-  overflow: hidden;
-  color: var(--lighter-blue);
-  border-bottom: 2px solid #fff;
-}
-
-.vertical-carousel li {
-  position: relative;
-  top: 0;
-  transition: top 1s;
-  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-/* 4.2. Skewed Containers */
+/* 4.1. Skewed Containers */
 .skew {
   position: relative;
 }
@@ -177,7 +150,7 @@ footer {
   transform-origin: top right;
 }
 
-/* 4.3. Grids */
+/* 4.2. Grids */
 .grid {
   margin: 7.5% 0;
   font-size: 0;
@@ -205,7 +178,7 @@ footer {
   }
 }
 
-/* 4.4. Popout Boxes */
+/* 4.3. Popout Boxes */
 .popout {
   transition: box-shadow 0.2s, transform 0.2s;
   transition-timing-function: cubic-bezier(0.68, 0.68, 0.265, 1.55);
@@ -216,7 +189,7 @@ footer {
   transform: scale(1.02);
 }
 
-/* 4.5. Cards */
+/* 4.3. Cards */
 .card-header {
   background-size: cover;
   background-position: center;
