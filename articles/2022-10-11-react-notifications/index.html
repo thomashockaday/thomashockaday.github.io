@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thomas Hockaday | Software Developer</title>
+    <meta
+      name="description"
+      content="Full stack developer and designer based around the North East of England"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="../../css/prism.css" rel="stylesheet" />
+    <link href="../../css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header
+      id="top"
+      class="gradient gradient-blue article-header"
+      role="presentation"
+    >
+      <nav>
+        <a href="../../index.html">Home</a>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+        <header>
+          <h1>Simple notifications with React 18</h1>
+          <span>
+            Posted on
+            <time datetime="2022-10-11 17:00">11th October 2022</time>
+          </span>
+        </header>
+        <main>
+          <section>
+            <p>
+              Recently I was working on a create-react-app project where I
+              needed to notify the user of certain state changes - such as an
+              email being deleted - in an unobtrusive way, as well as give them
+              a chance to undo or cancel certain actions. After exploring some
+              notification/alert libraries I couldn't find a solution that met
+              all of my requirements, so I decided to make my own.
+            </p>
+          </section>
+
+          <section>
+            <h2>What we will build</h2>
+
+            <video controls autoplay loop>
+              <source src="./video/notification.mp4" type="video/mp4" />
+              <source src="./video/notification.webm" type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+
+            <ul>
+              <li>
+                A small, customisable and accessible notification component that
+                is dismissed after 3 seconds
+              </li>
+              <li>
+                A smooth animation to show and hide the notification that can be
+                ignored depending on the user's system preferences
+              </li>
+              <li>
+                A way to create and render a new notification with a simple
+                function call
+              </li>
+              <li>
+                Have notifications persist across pages using the overall
+                application state
+              </li>
+              <li>
+                A button that allows the user to dismiss the notification early
+              </li>
+              <li>
+                Optionally, notifications know how to perform certain actions
+                upon dismissal
+              </li>
+              <li>
+                Notifications could also contain a second button to cancel out
+                the original action
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>The component</h2>
+
+            <div class="codeblock">
+              <div class="codeblock-title">src/components/Notification.js</div>
+              <pre><code class="language-jsx">const Notification = ({ text, status, onFinish, actionText, action }) => {
+  return (
+    &lt;div
+      className={`notification notification-${status}`}
+      role="status"
+      aria-live="polite"
+      onAnimationEnd={onFinish}
+    >
+      &lt;span>{text}&lt;/span>
+
+      &lt;div className="notification-buttons">
+        {actionText !== null && (
+          &lt;button
+            type="button"
+            className="notification-button notification-action"
+            onClick={action}
+          >
+            {actionText}
+          &lt;/button>
+        )}
+
+        &lt;button
+          type="button"
+          className="notification-button"
+          onClick={onFinish}
+          aria-label="Close notification"
+          title="Close"
+        >
+          &amp;#x2715;
+        &lt;/button>
+      &lt;/div>
+    &lt;/div>
+  );
+};
+
+export default Notification;</code></pre>
+            </div>
+
+            <p>
+              We pass in <code>text</code>, <code>status</code>,
+              <code>onFinish</code>, <code>actionText</code> and
+              <code>action</code> properties. <code>text</code> will be what we
+              display inside the notification. <code>status</code> will allow
+              for custom styling if you wish to implement different styles for
+              error, success etc. <code>onFinish</code> is a callback function
+              that will trigger when the notification has been removed from the
+              screen. <code>actionText</code> is the content of an optional
+              button such as "cancel". <code>action</code> is a callback
+              function that will be triggered if the button containing our
+              <code>actionText</code> is clicked. We will create a helper
+              function shortly to help set sensible defaults for these values.
+            </p>
+
+            <p>
+              The component has a <code>role</code> of <code>status</code> and
+              an <code>aria-live</code> attribute of <code>polite</code>. This
+              tells any screen reader to announce this content when it is
+              rendered as a priority, but not as a matter of urgency. More
+              information can be found at
+              <a
+                href="https://inclusive-components.design/notifications/"
+                target="_blank"
+                rel="noopener"
+                >Inclusive Components - Notifications</a
+              >.
+            </p>
+
+            <p>
+              Our close button text is the unicode symbol
+              <code>&amp;#x2715;</code> &#x2715;. You can replace this with the
+              word "Close", an SVG, or an icon component of your choice, but we
+              should avoid using the letter X because screen readers may read it
+              out as "X" rather than "Close".
+            </p>
+
+            <p>
+              We also give our close button an <code>aria-label</code> of "Close
+              notification" to help provide more context to screen readers and a
+              <code>title</code> of "Close" for most browsers to render a
+              tooltip when hovering over the button. The most accessible thing
+              to do here is just to take up a little bit extra space and use the
+              word "Close", but from my own testing at the time of writing,
+              screen readers ignored the unicode character and prioritised the
+              <code>aria-label</code> instead. You can find more information in
+              Sara Soueidan's article
+              <a
+                href="https://www.sarasoueidan.com/blog/accessible-icon-buttons/"
+                target="_blank"
+                rel="noopener"
+                >Accessible Icon Buttons</a
+              >
+            </p>
+
+            <p>
+              The last thing to note is that our main component has an
+              <code>onAnimationEnd</code> property that calls our
+              <code>onFinish</code> function.
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event"
+                target="_blank"
+                rel="noopener"
+                >onAnimationEnd</a
+              >
+              is an event that is fired when a CSS animation has completed. For
+              us, this is when the notification has moved off-screen, signalling
+              it is "finished". This is the next thing we need to implement.
+            </p>
+          </section>
+
+          <section>
+            <h2>Styling and animation</h2>
+
+            <div class="codeblock">
+              <div class="codeblock-title">src/styles/notifications.css</div>
+              <pre><code class="language-css">@keyframes notification {
+  0% {
+    bottom: -100px;
+  }
+  10% {
+    bottom: 20px;
+  }
+  90% {
+    bottom: 20px;
+  }
+  100% {
+    bottom: -100px;
+  }
+}
+
+.notification {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 8px;
+  position: fixed;
+  z-index: 1;
+  left: 20px;
+  right: 20px;
+  bottom: -120px;
+  max-width: 300px;
+  padding: 10px 20px;
+  color: #e5e5e5;
+  border-bottom: 2px solid #1b2431;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: notification 3s cubic-bezier(0.5, 0, 0.5, 1) 1;
+  background-color: #1f2937;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notification {
+    bottom: 20px;
+    animation: none;
+  }
+}
+
+.notification-success {
+  background-color: #10b981;
+  border-color: #0ea674;
+}
+
+.notification-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notification-button {
+  border: none;
+  background-color: transparent;
+  padding: 10px;
+  font-size: 1rem;
+  color: currentColor;
+}
+
+.notification-button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.notification-action {
+  color: #be911c;
+}
+
+@media (max-width: 500px) {
+  .notification {
+    max-width: none;
+  }
+}</code></pre>
+            </div>
+
+            <p>This is where you can be creative with themeing and styles.</p>
+
+            <p>
+              The key point here is the animation which holds the notification
+              off the bottom of the screen for the first 10% of its animation
+              cycle, then moves it onto the screen with a 20px gap for 80% of
+              it's animation before moving it back off-screen again for the
+              final 10%. The animation runs for 3 seconds and is set to only run
+              1 time. It uses a cubic bezier for timing which can be replaced
+              with any kind of easing you prefer. The animation reaching 100%
+              after 3 seconds is what will trigger the
+              <code>onAnimationEnd</code> event in our component.
+            </p>
+
+            <p>
+              For users who have configured their operating system to reduce
+              animations we cancel this animation property all together using a
+              <code>prefers-reduced-motion</code> media query. This is why the
+              notification also has a default <code>bottom</code> value of 20px,
+              so that it renders on the screen without the animation. These
+              users will have to manually dismiss the notifications. You can
+              read more about <code>prefers-reduced-motion</code> in the article
+              <a
+                href="https://web.dev/prefers-reduced-motion/"
+                target="_blank"
+                rel="noopener"
+                >prefers-reduced-motion: Sometimes less movement is more</a
+              >.
+            </p>
+
+            <p>
+              Some styling has been applied using flexbox to align the
+              notification content with any buttons that may appear in it and
+              the buttons have had a lot of their default properties such as
+              border, font size and colour overridden to match the theme. We
+              also have a <code>notification-success</code> class that changes
+              the background and border of the notification if we pass
+              <code>status="success"</code> in our markup. You can add as many
+              statuses as you like.
+            </p>
+
+            <img
+              src="./img/notifications.webp"
+              class="article-image"
+              alt="A comparison of the standard notification and the success notification styles"
+              loading="lazy"
+            />
+
+            <p>
+              For positioning and sizing, we use a fixed position to ensure the
+              notification will always be placed relative to the window itself
+              and a <code>z-index</code> of 1 to render it above any content it
+              might clash with. <code>left</code> and <code>right</code> values
+              are specified as 20px to make the notification the same width as
+              the window with some margin between. A <code>max-width</code> then
+              re-sizes the notification to 300px to make it less intrusive to
+              the rest of the page. A media query removes this max width on
+              small screens to allow the notification to take up however much
+              space it needs.
+            </p>
+          </section>
+
+          <section>
+            <h2>Managing notifications</h2>
+
+            <div class="codeblock">
+              <div class="codeblock-title">src/hooks/useNotification.js</div>
+              <pre><code class="language-jsx">import { useState } from "react";
+
+const useNotifications = () => {
+  const [notifications, setNotifications] = useState([]);
+
+  const newNotification = (notification) => {
+    return {
+      text: notification.text,
+      status: notification.status ?? "info",
+      onFinish: notification.hasOwnProperty("onFinish")
+        ? () => {
+            notification.onFinish();
+            removeNotification(notifications.indexOf(notification));
+          }
+        : () => {
+            removeNotification(notifications.indexOf(notification));
+          },
+      actionText: notification.actionText ?? null,
+      action: notification.hasOwnProperty("action")
+        ? () => {
+            notification.action();
+            removeNotification(notifications.indexOf(notification));
+          }
+        : () => {
+          removeNotification(notifications.indexOf(notification));
+        },
+    };
+  };
+
+  const addNotification = (notification) => {
+    setNotifications((notifications) => [
+      ...notifications,
+      newNotification(notification),
+    ]);
+  };
+
+  const removeNotification = (i) => {
+    const array = notifications.splice(i, 1);
+    setNotifications(array);
+  };
+
+  return {
+    notifications,
+    addNotification,
+  };
+};
+
+export default useNotifications;</code></pre>
+            </div>
+
+            <p>
+              We will manage our notifications using a custom hook. We will
+              store a <code>notifications</code> array in state with
+              <code>useState</code> and provide a
+              <code>setNotifications</code> method to allow the state to be
+              updated. <code>notifications</code> will be exported to allow
+              other files to be aware of them.
+            </p>
+
+            <p>
+              Our main two methods are <code>addNotification</code> and
+              <code>removeNotification</code>. <code>addNotification</code> will
+              be called from outside of this file so we return it as part of the
+              exported object. The method takes a notification object and
+              transforms it into the expected shape (the shape defined in our
+              component) using the <code>newNotification</code> method.
+              <code>newNotification</code> sets the notification text to
+              whatever we provide, so we must always be sure to provide this,
+              and sets defaults for every other property so that we can omit
+              them when calling <code>addNotification</code> if we don't need
+              them. Finally, it spreads the new notification into the existing
+              ones as a new array to avoid mutating the original and properly
+              update the state.
+            </p>
+
+            <p>
+              For the <code>onFinish</code> and <code>action</code> properties
+              we always want to have some method present, and we know that we
+              will always have some form of expected behaviour; like removing
+              the notification from the array on finish. For this reason we
+              check to see if we have provided our own <code>onFinish</code> or
+              <code>action</code> properties in the object we pass in, and if we
+              have we execute those methods before performing the default action
+              such as removing the notification. We also remove the notification
+              on <code>action</code> which will force it to be removed without
+              giving it a chance to "finish", which is what makes cancellable
+              actions like "cancel" possible.
+            </p>
+
+            <p>
+              <code>removeNotification</code> creates a new array by splicing
+              the notification out of the original array and setting our state
+              to that. Again, we want to avoid mutating the original array.
+              There are other ways to do this such as using
+              <code>array.filter</code> or <code>array.slice</code> but for
+              those to work properly we would have to either assume every
+              notification will have a unique text property or provide some kind
+              of unique identifier to each notification upon creation. Because
+              we don't need to call this method from outside of this file we
+              don't need to return and export it.
+            </p>
+          </section>
+
+          <section>
+            <h2>Page setup</h2>
+
+            <div class="codeblock">
+              <div class="codeblock-title">src/components/Footer.js</div>
+              <pre><code class="language-jsx">const Footer = () => {
+  return (
+    &lt;>
+      &lt;footer>
+        I made this website
+      &lt;/footer>
+    &lt;/>
+  );
+};
+
+export default Footer;</code></pre>
+            </div>
+
+            <div class="codeblock">
+              <div class="codeblock-title">src/pages/Home.js</div>
+              <pre><code class="language-jsx">import Footer from "./../components/Footer";
+                
+const Home = () => {
+  return (
+    &lt;>
+      &lt;h1>Home page&lt;/h1>
+
+      &lt;Footer />
+    &lt;/>
+  );
+};
+
+export default Home;</code></pre>
+            </div>
+
+            <p>
+              The first thing we will need is a page to render our notifications
+              in, we can come back and do the actual rendering code later.
+            </p>
+
+            <p>
+              Our notification rendering code will go inside the footer
+              component which we will include in all pages.
+            </p>
+          </section>
+
+          <section>
+            <h2>Accessing notifications across the application</h2>
+
+            <div class="codeblock">
+              <div class="codeblock-title">
+                src/context/NotificationContext.js
+              </div>
+              <pre><code class="language-jsx">import { createContext } from "react";
+
+const NotificationContext = createContext({
+  notifications: [],
+  addNotification: () => {},
+});
+
+export default NotificationContext;</code></pre>
+            </div>
+
+            <div class="codeblock">
+              <div class="codeblock-title">src/App.js</div>
+              <pre><code class="language-jsx">import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NotificationContext from "./context/NotificationContext";
+import useNotifications from "./hooks/useNotifications";
+import Home from "./pages/Home";
+import "./styles/notifications.css";
+
+const App = () => {
+  const { notifications, addNotification } = useNotifications();
+
+  return (
+    &lt;NotificationContext.Provider
+      value={{
+        notifications,
+        addNotification,
+      }}
+    >
+      &lt;BrowserRouter>
+        &lt;Routes>
+          &lt;Route path="/" element={&lt;Home />} />
+        &lt;/Routes>
+      &lt;/BrowserRouter>
+    &lt;/NotificationContext.Provider>
+  );
+};
+
+export default App;</code></pre>
+            </div>
+
+            <p>
+              To allow all pages to make use of the notification managing logic
+              we will create a context provider and wrap it around the rest of
+              our app. We can use our <code>useNotification</code> hook to
+              quickly set up the context provider. This example uses the
+              <code>react-router-dom</code> package to let us add multiple pages
+              to our application. For now we only have one page, which is our
+              Home page that will be rendered via the default
+              <code>/</code> route.
+            </p>
+          </section>
+
+          <section>
+            <h2>Rendering notifications</h2>
+
+            <div class="codeblock">
+              <div class="codeblock-title">src/components/Footer.js</div>
+              <pre><code class="language-jsx">import React, { useContext } from "react";
+import NotificationContext from "../context/NotificationContext";
+import Notification from "./Notification";
+
+const Footer = () => {
+  const { notifications } = useContext(NotificationContext);
+
+  return (
+    &lt;>
+      &lt;footer>
+        I made this website
+      &lt;/footer>
+
+      {notifications.map((notification, i) => {
+        return (
+          &lt;Notification
+            key={i}
+            text={notification.text}
+            status={notification.status}
+            onFinish={notification.onFinish}
+            actionText={notification.actionText}
+            action={notification.action}
+          />
+        );
+      })}
+    &lt;/>
+  );
+};
+
+export default Footer;</code></pre>
+            </div>
+
+            <div class="codeblock">
+              <div class="codeblock-title">src/pages/Home.js</div>
+              <pre><code class="language-jsx">import React, { useContext } from "react";
+import Footer from "./../components/Footer";
+import NotificationContext from "./../context/NotificationContext";
+                
+const Home = () => {
+  const { addNotification } = useContext(NotificationContext);
+
+  return (
+    &lt;>
+      &lt;h1>Home page&lt;/h1>
+
+      &lt;button
+        type="button"
+        onClick={() => {
+          addNotification({
+            text: "Hello!",
+          });
+        }}
+      >
+        Click me
+      &lt;/button>
+
+      &lt;Footer />
+    &lt;/>
+  );
+};
+
+export default Home;</code></pre>
+            </div>
+
+            <p>
+              We're finally ready to start adding notifications. The footer
+              component accesses the <code>notifications</code> array tied to
+              our context and iterates through it, rendering a
+              <code>Notification</code> component for each one. We know all of
+              the objects in this array will have the properties we need thanks
+              to our <code>newNotification</code> method so we can pass them
+              into the component directly. We also parse the index of that
+              notification in the array and provide it as a
+              <code>key</code> property so that react can establish a
+              relationship between that element and the DOM.
+            </p>
+
+            <p>
+              We've also added a button to our home page that when clicked will
+              create out first notification for us. Now we can try it out!
+            </p>
+
+            <video controls autoplay loop>
+              <source src="./video/default-notification.mp4" type="video/mp4" />
+              <source
+                src="./video/default-notification.webm"
+                type="video/webm"
+              />
+              Your browser does not support the video tag.
+            </video>
+
+            <video controls autoplay loop>
+              <source src="./video/close-notification.mp4" type="video/mp4" />
+              <source src="./video/close-notification.webm" type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+
+            <p>
+              It's worth noting that clicking the button multiple times in a
+              short period of time will render multiple notifications on top of
+              each other. With some tinkering we could allow each notification
+              to position itself relative to any others on the page, but we
+              should be cautious not to flood a users attention with too many
+              "important" messages at once, particularly user's who use screen
+              reading technologies. For most applications, one notification at a
+              time is more than enough.
+            </p>
+          </section>
+
+          <section>
+            <h2>Using the onFinish and action properties</h2>
+            <h3>onFinish</h3>
+
+            <div class="codeblock">
+              <div class="codeblock-title">src/pages/Home.js</div>
+              <pre><code class="language-jsx">import React, { useContext, useState } from "react";
+import Footer from "./../components/Footer";
+import NotificationContext from "./../context/NotificationContext";
+
+const Home = () => {
+  const { addNotification } = useContext(NotificationContext);
+
+  const [status, setStatus] = useState("OK");
+
+  return (
+    &lt;>
+      &lt;h1>Home page&lt;/h1>
+
+      &lt;div>Status: {status}&lt;/div>
+
+      &lt;button
+        type="button"
+        onClick={() => {
+          addNotification({
+            text: "Breaking website...",
+            onFinish: () => {
+              setStatus("Broken!");
+            },
+          });
+        }}
+      >
+        Click me
+      &lt;/button>
+
+      &lt;Footer />
+    &lt;/>
+  );
+};
+
+export default Home;</code></pre>
+            </div>
+
+            <p>
+              We can use the <code>onFinish</code> property to make something
+              happen when a notification has animated off the screen or is
+              closed using the close button. In this example we use a
+              <code>status</code> property set in state and change it's value on
+              finish to break our application.
+            </p>
+
+            <video controls autoplay loop>
+              <source
+                src="./video/notification-onfinish.mp4"
+                type="video/mp4"
+              />
+              <source
+                src="./video/notification-onfinish.webm"
+                type="video/webm"
+              />
+              Your browser does not support the video tag.
+            </video>
+
+            <h3>action</h3>
+
+            <div class="codeblock">
+              <div class="codeblock-title">src/pages/Home.js</div>
+              <pre><code class="language-jsx">import React, { useContext, useState } from "react";
+import Footer from "./../components/Footer";
+import NotificationContext from "./../context/NotificationContext";
+
+const Home = () => {
+  const { addNotification } = useContext(NotificationContext);
+
+  const [status, setStatus] = useState("OK");
+
+  return (
+    &lt;>
+      &lt;h1>Home page&lt;/h1>
+
+      &lt;div>Status: {status}&lt;/div>
+
+      &lt;button
+        type="button"
+        onClick={() => {
+          addNotification({
+            text: "Breaking website...",
+            onFinish: () => {
+              setStatus("Broken!");
+            },
+            actionText: "Cancel",
+            action: () => {
+              setStatus("Saved!");
+            },
+          });
+        }}
+      >
+        Click me
+      &lt;/button>
+
+      &lt;Footer />
+    &lt;/>
+  );
+};
+
+export default Home;</code></pre>
+            </div>
+
+            <p>
+              We can combine our <code>onFinish</code> property with
+              <code>action</code> to specify that we don't want to call our
+              finishing function if the action is pressed instead. In this
+              example we save our application from being broken.
+            </p>
+
+            <video controls autoplay loop>
+              <source src="./video/notification-action.mp4" type="video/mp4" />
+              <source
+                src="./video/notification-action.webm"
+                type="video/webm"
+              />
+              Your browser does not support the video tag.
+            </video>
+
+            <p>
+              If you are just trying to cancel the finishing function you can
+              omit the <code>action</code> property completely and just use
+              <code>actionText</code> to indicate that the button needs to show.
+              The rest will be automatically handled by our
+              <code>newNotification</code> method. <code>action</code> is for
+              when you want to supply some additional functionality on top of
+              cancelling the finishing function.
+            </p>
+          </section>
+        </main>
+      </article>
+    </main>
+
+    <footer class="article-footer">
+      <a href="#top">Back to Top</a>
+    </footer>
+  </body>
+
+  <script defer src="../../js/prism.js"></script>
+</html>
