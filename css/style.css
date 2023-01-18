@@ -146,6 +146,19 @@ article p {
   );
 }
 
+.gradient-blue::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 80%;
+  z-index: -1;
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: skew(-20deg);
+}
+
 .gradient-grey::before {
   background-color: var(--darker-grey);
   background-image: linear-gradient(
@@ -252,6 +265,7 @@ article p {
 
 .subtitle {
   font-size: 1.4rem;
+  margin-top: -1vw;
 }
 
 /* 6. Media Queries */
