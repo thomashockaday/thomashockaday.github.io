@@ -125,6 +125,7 @@ article p {
 .gradient {
   position: relative;
   color: #fff;
+  overflow: hidden;
 }
 
 .gradient::before {
