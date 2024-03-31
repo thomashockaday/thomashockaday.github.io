@@ -169,6 +169,13 @@ article p {
   );
 }
 
+.info {
+  border-radius: 0.3em;
+  border: 1px dashed var(--dark-blue);
+  padding: 10px;
+  background-color: rgba(35, 110, 168, 0.15);
+}
+
 .article-header {
   height: 8px;
 }
@@ -213,36 +220,19 @@ article p {
 
 /* 4.2. Grids */
 .grid {
-  font-size: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 5%;
+  grid-row-gap: 25px;
+  font-size: 1rem;
 }
 
 .grid-cell {
-  display: inline-block;
-  width: 30%;
-  height: auto;
-  margin: 0 1.66%;
-}
-
-@supports (display: grid) {
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 5%;
-    grid-row-gap: 25px;
-    font-size: 1rem;
-  }
-
-  .grid-cell {
-    width: auto;
-    margin: 0;
-  }
+  width: auto;
+  margin: 0;
 }
 
 /* 4.3. Cards */
-.card-list {
-  margin-top: 5%;
-}
-
 .card-header {
   background-size: cover;
   background-position: center;
@@ -282,19 +272,12 @@ article p {
     font-size: 2.5rem;
   }
 
-  .grid-cell {
-    margin: 8% 0 0 0;
-    width: 100%;
+  .grid {
+    grid-template-columns: 1fr;
   }
 
-  @supports (display: grid) {
-    .grid {
-      grid-template-columns: 1fr;
-    }
-
-    .grid-cell {
-      margin: 0;
-    }
+  .grid-cell {
+    margin: 0;
   }
 
   .skew {
