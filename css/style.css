@@ -84,7 +84,7 @@ a:focus {
 ul {
   list-style-position: inside;
   list-style-type: square;
-  margin-left: 1rem;
+  margin-left: 0.2rem;
 }
 
 footer {
@@ -101,11 +101,9 @@ video,
 }
 
 article,
-.article-header nav,
-.article-footer {
+.article-header nav {
   margin: 0 auto;
   max-width: 1000px;
-  padding: 10%;
 }
 
 .article-header nav {
@@ -291,13 +289,22 @@ article p {
   }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 580px) {
   h1 {
     font-size: 1.8rem;
   }
 
   h2 {
     font-size: 1.4rem;
+  }
+
+  footer,
+  .container {
+    padding: 10% 5%;
+  }
+
+  .intro {
+    padding: 10% 5% 15% 5%;
   }
 }
 
