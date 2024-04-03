@@ -174,6 +174,10 @@ article p {
   background-color: rgba(35, 110, 168, 0.15);
 }
 
+.info a {
+  color: inherit;
+}
+
 .article-header {
   height: 8px;
 }
