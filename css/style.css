@@ -336,3 +336,34 @@ article p {
     padding: 3%;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--dark-grey);
+    color: var(--white);
+  }
+
+  a {
+    color: var(--lighter-blue);
+  }
+
+  img {
+    opacity: 0.8;
+  }
+
+  img:hover {
+    opacity: 1;
+  }
+
+  .gradient-blue::before {
+    background-image: linear-gradient(
+      225deg,
+      var(--dark-grey) 10%,
+      var(--dark-blue) 90%
+    );
+  }
+
+  .gradient-blue::after {
+    background-color: transparent;
+  }
+}
