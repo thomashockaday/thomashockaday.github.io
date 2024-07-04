@@ -344,6 +344,12 @@ article p {
   }
 
   a {
+    color: var(--light-blue);
+  }
+
+  a:hover,
+  a:active,
+  a:focus {
     color: var(--lighter-blue);
   }
 
