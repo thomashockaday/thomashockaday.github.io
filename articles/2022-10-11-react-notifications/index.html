@@ -80,17 +80,22 @@
     ></header>
 
     <main>
-      <article class="container">
+      <article id="article" class="container">
         <header>
           <nav>
             <a href="../../">Home</a>
           </nav>
 
           <h1>Simple notifications with React</h1>
-          <span>
-            Posted on
-            <time datetime="2022-10-11 17:00">11th October 2022</time>
-          </span>
+
+          <div class="article-meta">
+            <span>
+              Posted on
+              <time datetime="2022-10-11 17:00">11th October 2022</time>
+            </span>
+
+            <span id="time-to-read"></span>
+          </div>
         </header>
         <main>
           <section class="info">
@@ -886,5 +891,12 @@ export default Home;</code></pre>
     </footer>
 
     <script defer src="../../js/prism.min.js"></script>
+    <script src="../../js/main.js"></script>
+
+    <script>
+      document.body.onload = function () {
+        calculateTimeToRead();
+      };
+    </script>
   </body>
 </html>
