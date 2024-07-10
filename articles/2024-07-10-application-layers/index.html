@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Designing application layers</title>
+
+    <meta
+      name="description"
+      content="How to create layers in your code to help make it easier to maintain and test"
+    />
+    <meta name="theme-color" content="#236ea8" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com/" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="../../css/style.css" rel="stylesheet" />
+
+    <link
+      href="https://thomashockaday.github.io/articles/2024-07-10-application-layers/"
+      rel="canonical"
+    />
+
+    <meta
+      property="og:url"
+      content="https://thomashockaday.github.io/articles/2024-07-10-application-layers/"
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="article:author"
+      content="https://thomashockaday.github.io"
+    />
+    <meta property="article:published_time" content="2024-07-10" />
+    <meta property="og:title" content="Designing application layers" />
+    <meta
+      property="og:image"
+      content="https://thomashockaday.github.io/articles/2024-07-10-application-layers/img/article-preview.webp"
+    />
+    <meta
+      property="og:image:alt"
+      content="A picture of the layers of an application wrapping around each other"
+    />
+    <meta
+      property="og:description"
+      content="How to create layers in your code to help make it easier to maintain and test"
+    />
+    <meta property="og:site_name" content="Thomas Hockaday" />
+    <meta property="og:locale" content="en_GB" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:url"
+      content="https://thomashockaday.github.io/articles/2024-07-10-application-layers/"
+    />
+    <meta name="twitter:title" content="Designing application layers" />
+    <meta
+      name="twitter:description"
+      content="How to create layers in your code to help make it easier to maintain and test"
+    />
+    <meta
+      property="twitter:image"
+      content="https://thomashockaday.github.io/articles/2024-07-10-application-layers/img/article-preview.webp"
+    />
+    <meta
+      property="twitter:image:alt"
+      content="A picture of the layers of an application wrapping around each other"
+    />
+  </head>
+  <body>
+    <header
+      id="top"
+      class="gradient gradient-blue article-header"
+      role="presentation"
+    ></header>
+
+    <main>
+      <article id="article" class="container">
+        <header>
+          <nav>
+            <a href="../../">Home</a>
+          </nav>
+
+          <h1>Designing application layers</h1>
+
+          <div class="article-meta">
+            <span>
+              Posted on
+              <time datetime="2024-07-10 16:00">10th July 2024</time>
+            </span>
+
+            <span id="time-to-read"></span>
+          </div>
+        </header>
+        <main>
+          <section>
+            <p>
+              In programming, we think a lot about separation of concerns. We
+              want our code to do a lot of exciting things, but we need to be
+              able to read and maintain it. In object-oriented programming, a
+              common way to achieve this is to give each "object" one thing to
+              control. This is commonly called the
+              <a
+                href="https://en.wikipedia.org/wiki/Single-responsibility_principle"
+                target="_blank"
+                rel="noopener"
+                >single-responsibility principle</a
+              >.
+            </p>
+            <p>
+              When a file/object in our code does one thing, it becomes much
+              easier to read, to edit, and to
+              <a
+                href="https://aws.amazon.com/what-is/unit-testing/"
+                target="_blank"
+                rel="noopener"
+                >unit test</a
+              >. With this in mind we need to figure out how to fit these
+              objects together so we can see the system working from end to end.
+              Welcome to systems design.
+            </p>
+          </section>
+
+          <section>
+            <h2>Making a car</h2>
+
+            <p>
+              Imagine you work on the production line of a car factory. You push
+              the lit button in front of you. The light goes out and an empty
+              chassis rolls up to the first machine. The first machine adds
+              wheels to the frame and passes it to the second machine. The
+              second machine adds the engine and passes it to the third machine.
+              The third machine adds the body and sends the finished car to the
+              end of the line, at which point the button lights up, letting you
+              know you can press it again.
+            </p>
+
+            <p>There are three things we can learn from this example:</p>
+
+            <ol>
+              <li>I clearly do not work in a car factory</li>
+              <li>
+                For an object inside a system to do something impactful, it
+                usually needs input and output. The machines take the car as an
+                input, adjust it somehow, and output the adjusted form.
+              </li>
+              <li>
+                The order of the objects is consistent and must be preserved; we
+                cannot add the wheels if we do not have the chassis first.
+              </li>
+            </ol>
+
+            <p>
+              If the order of the objects is enforced as consistent, object 1
+              becomes a wrapper around object 2, stopping anything else from
+              accessing it directly.
+            </p>
+
+            <p>
+              Having one consistent way in and out of a system is not unusual
+              and is an excellent way to ensure system security. Consider the
+              imaginary factory again. How did you arrive? Did you use the
+              designated entrance? Did you pass through the metal detector? Did
+              you scan your badge to enter the production floor? If we find
+              alternative entrances that do not revolve around these
+              checkpoints, what risks do we open ourselves up to?
+            </p>
+
+            <p>
+              Finally, consider the utility of each of these processes based on
+              the end goal of building cars. If the factory suddenly started
+              making trains instead, would the entrance and security checks
+              remain the same? As important as all these protective outer layers
+              are to the survival of the business, if you want to make anything
+              unique happen, you must be in the middle.
+            </p>
+
+            <img
+              src="./img/article-preview.webp"
+              class="article-image shadow"
+              alt="An applications layers get more domain-specific as they move into the middle"
+              loading="lazy"
+            />
+
+            <p>
+              The inner layers handle any final state of change. The outer
+              layers enable the inner layers to do their jobs safely. The outer
+              layers handle business logic, and the inner layers handle domain
+              logic. While the inner layers cannot control the outer layers,
+              they can optionally communicate a change in state. The final
+              machine on the production floor is the only thing that truly knows
+              whether it is okay for you to push your button again or not, so it
+              must be able to communicate this.
+            </p>
+          </section>
+
+          <section>
+            <h2>Onion architecture</h2>
+
+            <p>
+              Jeffrey Palermo described these nested layers as
+              <a
+                href="https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/"
+                target="_blank"
+                rel="noopener"
+                >onion architecture</a
+              >
+              in 2008. This term is now used quite heavily in the industry, and
+              one I have been asked to define several times in interviews.
+              Researching online shows some variation in what makes up our onion
+              and what those layers should be, but some aspects of it will
+              always be true.
+            </p>
+
+            <p>
+              The onion represents the main application code. The external data
+              stores, deployed infrastructure and third-party dependencies
+              cannot be the ultimate decider of our application function. A
+              layer of our application may consume some of these things, but
+              they must do it in a way that is steadfast to change. This is
+              achieved through interfaces and abstractions. If we changed our
+              database engine from MySQL to SQLite tomorrow, then we should only
+              need to change the code in one of our layers at most.
+            </p>
+
+            <p>
+              Our objects/layers should be easy to build. Patterns such as
+              <a
+                href="https://stackify.com/dependency-injection/"
+                target="_blank"
+                rel="noopener"
+                >dependency injection</a
+              >
+              should be used to make sure our interfaces point at the correct
+              implementations. The outermost layer of most onion codebases is a
+              bootstrapping layer, where no domain logic is stored and where the
+              dependencies, config and interfaces are wired together.
+            </p>
+          </section>
+
+          <section>
+            <h2>Defining our layers</h2>
+
+            <p>
+              Let's push that button again and see where our layer separations
+              lie.
+            </p>
+
+            <svg
+              viewBox="0 0 1320 2320"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              version="1.1"
+              class="data-flow-diagram"
+            >
+              <g>
+                <path
+                  transform="translate(660,210)"
+                  fill="none"
+                  d="M 0 0 L 0 50 L 0 100 L 0 150 "
+                ></path>
+                <path
+                  class="arrow-head"
+                  transform="translate(660,210)"
+                  d="M0,150 L10.000000000000002,135 L5.722162169016008e-16,140.655 L-9.999999999999998,135 Z"
+                ></path>
+              </g>
+              <g>
+                <path
+                  transform="translate(810,485)"
+                  fill="none"
+                  d="M 0 0 L 50 0 L 100 0 L 150 0 "
+                ></path>
+                <path
+                  class="arrow-head"
+                  transform="translate(810,485)"
+                  d="M150,0 L135,10 L140.655,0 L135,-10 Z"
+                ></path>
+                <rect
+                  class="label-background"
+                  x="61.015632420285954"
+                  y="-14.382823113262816"
+                  width="27.96873515942809"
+                  height="28.765646226525632"
+                  transform="translate(810,485)"
+                ></rect>
+                <text
+                  x="75"
+                  y="0"
+                  dominant-baseline="middle"
+                  transform="translate(810,485)"
+                >
+                  no
+                </text>
+              </g>
+              <g>
+                <path
+                  transform="translate(860,135)"
+                  fill="none"
+                  d="M 250 275 L 250 225 L 250 3 A 3 3 0 0,0 247 0 L 50 0 L 0 0 "
+                ></path>
+                <path
+                  class="arrow-head"
+                  transform="translate(860,135)"
+                  d="M0,0 L15,-10 L9.345,0 L15,10 Z"
+                ></path>
+              </g>
+              <g>
+                <path
+                  transform="translate(660,610)"
+                  fill="none"
+                  d="M 0 0 L 0 50 L 0 100 L 0 150 "
+                ></path>
+                <path
+                  class="arrow-head"
+                  transform="translate(660,610)"
+                  d="M0,150 L10.000000000000002,135 L5.722162169016008e-16,140.655 L-9.999999999999998,135 Z"
+                ></path>
+                <rect
+                  class="label-background"
+                  x="-17.156293681100315"
+                  y="60.617176886737184"
+                  width="34.31258736220063"
+                  height="28.765646226525632"
+                  transform="translate(660,610)"
+                ></rect>
+                <text
+                  x="1.530808498934192e-15"
+                  y="75"
+                  dominant-baseline="middle"
+                  transform="translate(660,610)"
+                >
+                  yes
+                </text>
+              </g>
+              <g>
+                <path
+                  transform="translate(660,910)"
+                  fill="none"
+                  d="M 0 0 L 0 50 L 0 75 L 0 100 L 0 150 "
+                ></path>
+                <path
+                  class="arrow-head"
+                  transform="translate(660,910)"
+                  d="M0,150 L10.000000000000002,135 L5.722162169016008e-16,140.655 L-9.999999999999998,135 Z"
+                ></path>
+              </g>
+              <g>
+                <path
+                  transform="translate(660,1310)"
+                  fill="none"
+                  d="M 0 0 L 0 50 L 0 75 L 0 100 L 0 150 "
+                ></path>
+                <path
+                  class="arrow-head"
+                  transform="translate(660,1310)"
+                  d="M0,150 L10.000000000000002,135 L5.722162169016008e-16,140.655 L-9.999999999999998,135 Z"
+                ></path>
+                <rect
+                  class="label-background"
+                  x="-17.15622143521313"
+                  y="60.61718185787857"
+                  width="34.31244287042626"
+                  height="28.765636284242856"
+                  transform="translate(660,1310)"
+                ></rect>
+                <text
+                  x="0"
+                  y="75"
+                  dominant-baseline="middle"
+                  transform="translate(660,1310)"
+                >
+                  yes
+                </text>
+              </g>
+              <g>
+                <path
+                  transform="translate(810,1185)"
+                  fill="none"
+                  d="M 0 0 L 50 0 L 75 0 L 100 0 L 150 0 "
+                ></path>
+                <path
+                  class="arrow-head"
+                  transform="translate(810,1185)"
+                  d="M150,0 L135,10 L140.655,0 L135,-10 Z"
+                ></path>
+                <rect
+                  class="label-background"
+                  x="61.015632420285954"
+                  y="-14.382806028298681"
+                  width="27.96873515942809"
+                  height="28.765612056597362"
+                  transform="translate(810,1185)"
+                ></rect>
+                <text
+                  x="75"
+                  y="0"
+                  dominant-baseline="middle"
+                  transform="translate(810,1185)"
+                >
+                  no
+                </text>
+              </g>
+              <g>
+                <path
+                  transform="translate(810,1260)"
+                  fill="none"
+                  d="M 300 0 L 300 50 L 300 272 A 3 3 0 0,1 297 275 L 50 275 L 0 275 "
+                ></path>
+                <path
+                  class="arrow-head"
+                  transform="translate(810,1260)"
+                  d="M0,275 L15,265 L9.345,275 L15,285 Z"
+                ></path>
+              </g>
+              <g>
+                <path
+                  transform="translate(210,135)"
+                  fill="none"
+                  d="M 0 1625 L 0 1575 L 0 3 A 3 3 0 0,1 3 0 L 200 0 L 250 0 "
+                ></path>
+                <path
+                  class="arrow-head"
+                  transform="translate(210,135)"
+                  d="M250,0 L235,10 L240.655,0 L235,-10 Z"
+                ></path>
+              </g>
+              <g>
+                <path
+                  transform="translate(660,1610)"
+                  fill="none"
+                  d="M 0 0 L 0 50 L 0 75 L 0 100 L 0 150 "
+                ></path>
+                <path
+                  class="arrow-head"
+                  transform="translate(660,1610)"
+                  d="M0,150 L10.000000000000002,135 L5.722162169016008e-16,140.655 L-9.999999999999998,135 Z"
+                ></path>
+              </g>
+              <g>
+                <path
+                  transform="translate(660,1910)"
+                  fill="none"
+                  d="M 0 0 L 0 50 L 0 75 L 0 100 L 0 150 "
+                ></path>
+                <path
+                  class="arrow-head"
+                  transform="translate(660,1910)"
+                  d="M0,150 L10.000000000000002,135 L5.722162169016008e-16,140.655 L-9.999999999999998,135 Z"
+                ></path>
+              </g>
+              <g>
+                <path
+                  transform="translate(360,1835)"
+                  fill="none"
+                  d="M 150 0 L 100 0 L 75 0 L 50 0 L 0 0 "
+                ></path>
+                <path
+                  class="arrow-head"
+                  transform="translate(360,1835)"
+                  d="M0,0 L15,-10 L9.345,0 L15,10 Z"
+                ></path>
+              </g>
+              <g class="diagram-input">
+                <rect
+                  class="diagram-node"
+                  x="0"
+                  y="0"
+                  width="400"
+                  height="150"
+                  fill="#7b9fc6"
+                  transform="translate(460,60)"
+                ></rect>
+                <text
+                  x="200"
+                  y="75"
+                  dominant-baseline="middle"
+                  transform="translate(460,60)"
+                >
+                  Button is pushed
+                </text>
+              </g>
+              <g>
+                <path
+                  class="diagram-node"
+                  d="M 150 0 L 300 125 L 150 250 L 0 125 Z"
+                  transform="translate(510,360)"
+                ></path>
+                <text
+                  x="150"
+                  y="125"
+                  dominant-baseline="middle"
+                  transform="translate(510,360)"
+                >
+                  Is the button lit up?
+                </text>
+              </g>
+              <g>
+                <rect
+                  class="diagram-node"
+                  x="0"
+                  y="0"
+                  width="300"
+                  height="150"
+                  transform="translate(960,410)"
+                ></rect>
+                <text
+                  x="150"
+                  y="75"
+                  dominant-baseline="middle"
+                  transform="translate(960,410)"
+                >
+                  Do nothing
+                </text>
+              </g>
+              <g>
+                <rect
+                  class="diagram-node"
+                  x="0"
+                  y="0"
+                  width="300"
+                  height="150"
+                  transform="translate(510,760)"
+                ></rect>
+                <text
+                  x="150"
+                  y="75"
+                  dominant-baseline="middle"
+                  transform="translate(510,760)"
+                >
+                  Disable button light
+                </text>
+              </g>
+              <g>
+                <rect
+                  class="diagram-node"
+                  x="0"
+                  y="0"
+                  width="300"
+                  height="150"
+                  transform="translate(960,1110)"
+                ></rect>
+                <text
+                  x="150"
+                  y="75"
+                  dominant-baseline="middle"
+                  transform="translate(960,1110)"
+                >
+                  Load parts into machines
+                </text>
+              </g>
+              <g>
+                <rect
+                  class="diagram-node"
+                  x="0"
+                  y="0"
+                  width="300"
+                  height="150"
+                  transform="translate(510,1460)"
+                ></rect>
+                <text
+                  x="150"
+                  y="75"
+                  dominant-baseline="middle"
+                  transform="translate(510,1460)"
+                >
+                  Assemble the car
+                </text>
+              </g>
+              <g>
+                <rect
+                  class="diagram-node"
+                  x="0"
+                  y="0"
+                  width="300"
+                  height="150"
+                  transform="translate(60,1760)"
+                ></rect>
+                <text
+                  x="150"
+                  y="75"
+                  dominant-baseline="middle"
+                  transform="translate(60,1760)"
+                >
+                  Enable button light
+                </text>
+              </g>
+              <g>
+                <path
+                  class="diagram-node"
+                  d="M 150 0 L 300 125 L 150 250 L 0 125 Z"
+                  transform="translate(510,1060)"
+                ></path>
+                <text
+                  x="150"
+                  y="125"
+                  dominant-baseline="middle"
+                  transform="translate(510,1060)"
+                >
+                  Are the machines loaded?
+                </text>
+              </g>
+              <g class="diagram-output">
+                <rect
+                  class="diagram-node"
+                  x="0"
+                  y="0"
+                  width="400"
+                  height="150"
+                  rx="66.66666666666667"
+                  transform="translate(460,2060)"
+                ></rect>
+                <text
+                  x="200"
+                  y="75"
+                  dominant-baseline="middle"
+                  transform="translate(460,2060)"
+                >
+                  Hey look, a car!
+                </text>
+              </g>
+              <g>
+                <rect
+                  class="diagram-node"
+                  x="0"
+                  y="0"
+                  width="300"
+                  height="150"
+                  transform="translate(510,1760)"
+                ></rect>
+                <text
+                  x="150"
+                  y="75"
+                  dominant-baseline="middle"
+                  transform="translate(510,1760)"
+                >
+                  Release the car
+                </text>
+              </g>
+            </svg>
+
+            <p>
+              We move deeper into the application whenever the system needs to
+              ask a question about its readiness to complete the specified
+              function.
+            </p>
+
+            <ul>
+              <li>
+                The first layer performs basic validation on the input to
+                determine whether or not to process the request.
+              </li>
+
+              <li>
+                The second layer prepares all of the machines with the necessary
+                parts to make the car.
+              </li>
+
+              <li>
+                The third and final layer lets each machine on the line do its
+                job. This process could be broken down into its own layers if
+                needed.
+              </li>
+            </ul>
+
+            <p>
+              The outcome of the process is the released car. The output of the
+              system provides this information to the user.
+            </p>
+
+            <p>
+              In reality each of these layers would also ask whether or not
+              there was a system error and allow that to bubble back up to the
+              outer layers to feed this information back to the user.
+            </p>
+
+            <p>
+              One thing I love about this pattern is the way it creates clear
+              boundaries between testing types. An object or layer can be unit
+              tested in total isolation. Layers can be built and combined
+              downwards into integration tests. The entire system function can
+              be tested end to end.
+            </p>
+
+            <p>
+              You can scale this model up and down indefinitely. How does your
+              arrival to the factory fit into this? Could each machine on the
+              line have its own diagram and layers? Absolutely. If we decided to
+              add a second input to the system, validation could become its own
+              layer.
+            </p>
+          </section>
+
+          <section>
+            <h2>Onions, layers and hexagons</h2>
+
+            <p>
+              There are many defined ways of architecting your software. Onion,
+              layered and hexagonal architectures are all debated and
+              <a
+                href="https://stackoverflow.com/questions/50039019/onion-architecture-compared-to-hexagonal"
+                target="_blank"
+                rel="noopener"
+                >compared often</a
+              >. There's a lot of cross-over between them, and I've been quite
+              generous in using some key terms interchangeably in this article.
+            </p>
+
+            <p>
+              In both the onion and layered architecture patterns,
+              <a
+                href="https://romanglushach.medium.com/understanding-hexagonal-clean-onion-and-traditional-layered-architectures-a-deep-dive-c0f93b8a1b96"
+                target="_blank"
+                rel="noopener"
+                >the definition of a layer is the same</a
+              >. The main difference between the two architectures is that
+              <a
+                href="https://blog.ploeh.dk/2013/12/03/layers-onions-ports-adapters-its-all-the-same/"
+                target="_blank"
+                rel="noopener"
+                >a layered architecture can be at risk of tight coupling</a
+              >
+              between the layers, while the onion uses dependency inversion to
+              ensure each layer is much more separated from its surroundings.
+              This is similar to how hexagonal architecture allows each hexagon
+              to exist and function independently, and the architecture focuses
+              on how they slot together.
+            </p>
+
+            <p>
+              Understanding the difference is much easier when focusing solely
+              on your code and not the dependencies, data stores and deployed
+              infrastructure. Ultimately, being able to separate your desired
+              outcome into specific processes, deciding whether each process is
+              a business process or a domain process, and then finding a
+              structured way to slot those processes together will make your
+              code more testable and maintainable, and probably help you
+              understand your desired outcome a bit better, too.
+            </p>
+          </section>
+        </main>
+      </article>
+    </main>
+
+    <footer>
+      <a href="#top">Back to Top</a>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+
+    <script>
+      document.body.onload = function () {
+        calculateTimeToRead();
+      };
+    </script>
+  </body>
+</html>

@@ -22,6 +22,7 @@
   --lighter-blue: #8befef;
   --dark-grey: #20292f;
   --darker-grey: #101518;
+  --lighter-grey: #dfe6e9;
   --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
@@ -83,10 +84,14 @@ a:focus {
   border-bottom: 1px solid currentColor;
 }
 
-ul {
+ul,
+ol {
   list-style-position: inside;
+  margin: 2rem 0.2rem;
+}
+
+ul {
   list-style-type: square;
-  margin-left: 0.2rem;
 }
 
 footer {
@@ -110,8 +115,66 @@ video,
 .article-image {
   display: block;
   max-width: 100%;
-  box-shadow: var(--box-shadow);
   margin: 3rem auto;
+}
+
+video,
+.shadow {
+  box-shadow: var(--box-shadow);
+}
+
+.data-flow-diagram {
+  width: 100%;
+  font: inherit;
+}
+
+.data-flow-diagram text {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 0.25px;
+  text-anchor: middle;
+}
+
+.data-flow-diagram path {
+  stroke: var(--darker-grey);
+  stroke-miterlimit: 4px;
+  stroke-linejoin: miter;
+  stroke-dasharray: none;
+  stroke-linecap: butt;
+  stroke-dashoffset: 0;
+}
+
+.data-flow-diagram .arrow-head {
+  fill: currentColor;
+}
+
+.data-flow-diagram .label-background {
+  stroke: none;
+  fill: var(--white);
+}
+
+.data-flow-diagram .diagram-node {
+  stroke-width: 2px;
+  fill: var(--lighter-grey);
+  stroke: currentColor;
+}
+
+.data-flow-diagram .diagram-input rect {
+  fill: currentColor;
+}
+
+.data-flow-diagram .diagram-input text {
+  fill: var(--white);
+  stroke: var(--white);
+}
+
+.data-flow-diagram .diagram-output rect {
+  fill: var(--dark-blue);
+}
+
+.data-flow-diagram .diagram-output text {
+  fill: var(--white);
+  stroke: var(--white);
 }
 
 article,
@@ -389,5 +452,22 @@ article p {
 
   .article-meta {
     color: var(--white);
+  }
+
+  .data-flow-diagram path {
+    stroke: var(--white);
+  }
+
+  .data-flow-diagram .label-background {
+    fill: var(--dark-grey);
+  }
+
+  .data-flow-diagram .diagram-node {
+    fill: var(--darker-grey);
+  }
+
+  .data-flow-diagram .diagram-input text {
+    fill: var(--darker-grey);
+    stroke: var(--darker-grey);
   }
 }
