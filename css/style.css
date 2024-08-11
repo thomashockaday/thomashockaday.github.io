@@ -302,7 +302,7 @@ article p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 5%;
-  grid-row-gap: 25px;
+  grid-row-gap: 3rem;
   font-size: 1rem;
 }
 
