@@ -216,7 +216,7 @@ article p {
 .gradient-blue::before {
   background-color: var(--dark-blue);
   background-image: linear-gradient(
-    225deg,
+    195deg,
     var(--light-blue) 10%,
     var(--dark-blue) 90%
   );
@@ -238,7 +238,7 @@ article p {
 .gradient-grey::before {
   background-color: var(--darker-grey);
   background-image: linear-gradient(
-    225deg,
+    195deg,
     var(--dark-grey) 10%,
     var(--darker-grey) 90%
   );
@@ -440,7 +440,7 @@ article p {
 
   .gradient-blue::before {
     background-image: linear-gradient(
-      225deg,
+      195deg,
       var(--dark-grey) 10%,
       var(--dark-blue) 90%
     );
