@@ -446,6 +446,10 @@ article p {
     );
   }
 
+  .gradient-grey::before {
+    background-image: none;
+  }
+
   .gradient-blue::after {
     background-color: transparent;
   }
