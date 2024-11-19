@@ -7,9 +7,8 @@
  * 2. Semantic Markup
  * 3. Base Classes
  * 4. Components
- *    4.1. Skewed Containers
- *    4.2. Grids
- *    4.3. Cards
+ *    4.1. Grids
+ *    4.2. Cards
  * 5. Section Specific
  * 6. Media Queries
  */
@@ -23,7 +22,7 @@
   --dark-grey: #20292f;
   --darker-grey: #101518;
   --lighter-grey: #dfe6e9;
-  --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
 }
 
 /* 1. Simple Reset */
@@ -57,8 +56,7 @@ body {
 
 h1 {
   font-size: 3.3rem;
-  line-height: 1.3;
-  margin: 1% 0;
+  line-height: 1;
 }
 
 h2 {
@@ -66,7 +64,8 @@ h2 {
   margin-bottom: 1%;
 }
 
-h3 {
+h3,
+.subtitle {
   font-size: 1.4rem;
   font-weight: normal;
 }
@@ -222,19 +221,6 @@ article p {
   );
 }
 
-.gradient-blue::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 65%;
-  z-index: -1;
-  width: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: skew(-20deg);
-}
-
 .gradient-grey::before {
   background-color: var(--darker-grey);
   background-image: linear-gradient(
@@ -259,10 +245,6 @@ article p {
   height: 8px;
 }
 
-.highlight p {
-  padding: 2% 0;
-}
-
 .codeblock pre[class*="language-"] {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -280,24 +262,7 @@ article p {
 }
 
 /* 4. Components */
-/* 4.1. Skewed Containers */
-.skew {
-  position: relative;
-}
-
-.skew::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  transform: skew(0deg, 5deg);
-  transform-origin: top right;
-}
-
-/* 4.2. Grids */
+/* 4.1. Grids */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -311,13 +276,13 @@ article p {
   margin: 0;
 }
 
-/* 4.3. Cards */
+/* 4.2. Cards */
 .card-header {
   background-size: cover;
   background-position: center;
   display: block;
   width: 100%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+  box-shadow: var(--box-shadow);
 }
 
 .card-body h3 {
@@ -329,20 +294,83 @@ article p {
 }
 
 /* 5. Section Specific */
+.layers,
+.layer {
+  height: 50vw;
+}
+
 .intro {
-  padding: 10% 10% 15% 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 5;
+  color: var(--white);
+  text-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
 }
 
-.subtitle {
-  font-size: 1.4rem;
-  margin-top: -1vw;
+.layers {
+  position: relative;
 }
 
-.laptop-graphic {
+.layer {
+  width: 100%;
   position: absolute;
-  top: 22%;
-  right: 10%;
-  opacity: 0.8;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: 100%;
+}
+
+#angel-layer-1 {
+  z-index: 4;
+  background-image: url(../img/angel-layer-1.webp);
+}
+
+#angel-layer-2 {
+  z-index: 3;
+  background-image: url(../img/angel-layer-2.webp);
+  opacity: 0.7;
+}
+
+#angel-layer-3 {
+  z-index: 2;
+  background-image: url(../img/angel-layer-3.webp);
+  opacity: 0.4;
+}
+
+#angel-layer-4 {
+  z-index: 1;
+  background-image: url(../img/angel-layer-4.webp);
+  background-repeat: repeat-x;
+  animation: drift 300s infinite;
+}
+
+@keyframes drift {
+  from {
+    background-position-x: 0;
+  }
+
+  to {
+    background-position-x: 100vw;
+  }
+}
+
+.highlight {
+  background-color: var(--darker-grey);
+  color: var(--white);
+}
+
+.highlight a {
+  color: var(--light-blue);
+}
+
+.highlight a:hover,
+.highlight a:active,
+.highlight a:focus {
+  color: var(--lighter-blue);
 }
 
 /* 6. Media Queries */
@@ -357,16 +385,6 @@ article p {
 
   .grid-cell {
     margin: 0;
-  }
-
-  .skew {
-    padding-bottom: 20%;
-  }
-}
-
-@media only screen and (max-width: 1100px) {
-  .laptop-graphic {
-    display: none;
   }
 }
 
@@ -383,16 +401,16 @@ article p {
   .container {
     padding: 10% 5%;
   }
-
-  .intro {
-    padding: 10% 5% 15% 5%;
-  }
 }
 
 @media only screen and (min-width: 769px) {
   .highlight {
     padding: 8% 20% 10% 20%;
     text-align: center;
+  }
+
+  .intro {
+    height: 40vw;
   }
 }
 
@@ -416,7 +434,7 @@ article p {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: var(--dark-grey);
+    background-color: var(--darker-grey);
     color: var(--white);
   }
 

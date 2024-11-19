@@ -48,17 +48,18 @@
     />
   </head>
   <body>
-    <header id="top" class="container skew gradient gradient-blue intro">
-      <h1>Thomas Hockaday</h1>
-      <p class="subtitle">Software Developer</p>
-
-      <img
-        src="img/laptop.svg"
-        alt=""
-        loading="lazy"
-        role="presentation"
-        class="laptop-graphic"
-      />
+    <header id="top" class="layers">
+      <div class="layer" id="angel-layer-1" role="presentation"></div>
+      <div class="layer intro">
+        <div class="container">
+          <h1>Thomas Hockaday</h1>
+          <h2 class="subtitle">Software Developer</h2>
+        </div>
+      </div>
+      <div class="layer" id="angel-layer-2" role="presentation"></div>
+      <div class="layer" id="angel-layer-3" role="presentation"></div>
+      <div class="layer" id="angel-layer-4" role="presentation"></div>
+      <div class="layer gradient gradient-blue" role="presentation"></div>
     </header>
     <main>
       <section class="container highlight">
@@ -207,5 +208,47 @@
     <footer>
       <a href="#top">Back to Top</a>
     </footer>
+
+    <script>
+      let ticking = false;
+      const layers = document.getElementsByClassName("layer");
+
+      function handleScroll() {
+        if (ticking) {
+          return;
+        }
+
+        window.requestAnimationFrame(() => {
+          const percentageScrolled = (
+            (window.scrollY / window.innerHeight) *
+            100
+          ).toFixed(2);
+
+          for (let i = 0; i < layers.length; i++) {
+            const id = layers[i].id;
+
+            if (!id) {
+              continue;
+            }
+
+            const layer = id.slice(-1);
+
+            if (!layer || layer === "1") {
+              continue;
+            }
+
+            layers[i].style.backgroundPositionY = `${
+              100 - percentageScrolled * layer
+            }%`;
+          }
+
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+
+      document.addEventListener("scroll", handleScroll);
+    </script>
   </body>
 </html>
