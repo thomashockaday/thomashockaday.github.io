@@ -326,27 +326,33 @@ article p {
 }
 
 #angel-layer-1 {
-  z-index: 4;
+  z-index: 5;
   background-image: url(../img/angel-layer-1.webp);
 }
 
 #angel-layer-2 {
-  z-index: 3;
+  z-index: 4;
   background-image: url(../img/angel-layer-2.webp);
   opacity: 0.7;
 }
 
 #angel-layer-3 {
-  z-index: 2;
+  z-index: 3;
   background-image: url(../img/angel-layer-3.webp);
   opacity: 0.4;
 }
 
 #angel-layer-4 {
-  z-index: 1;
+  z-index: 2;
   background-image: url(../img/angel-layer-4.webp);
   background-repeat: repeat-x;
   animation: drift 300s infinite;
+}
+
+#angel-layer-5 {
+  z-index: 1;
+  background-image: url(../img/angel-layer-5.webp);
+  opacity: 0.3;
 }
 
 @keyframes drift {
@@ -460,9 +466,13 @@ article p {
   .gradient-blue::before {
     background-image: linear-gradient(
       195deg,
-      var(--dark-grey) 10%,
-      var(--dark-blue) 90%
+      var(--dark-blue) 10%,
+      var(--dark-grey) 90%
     );
+  }
+
+  #angel-layer-5 {
+    opacity: 0.7;
   }
 
   .gradient-grey::before {
