@@ -423,7 +423,7 @@ article p {
     border-radius: 100px;
     border: 2px solid transparent;
     background: linear-gradient(
-          to bottom,
+          to right,
           black 0%,
           var(--darker-grey) var(--y),
           black 100%
