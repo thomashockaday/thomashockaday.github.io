@@ -21,7 +21,7 @@
   --lighter-blue: #8befef;
   --dark-grey: #20292f;
   --darker-grey: #101518;
-  --lighter-grey: #dfe6e9;
+  --lighter-grey: #a9bcc4;
   --box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
 }
 
@@ -155,7 +155,7 @@ video,
 
 .data-flow-diagram .diagram-node {
   stroke-width: 2px;
-  fill: var(--lighter-grey);
+  fill: var(--white);
   stroke: currentColor;
 }
 
@@ -365,18 +365,18 @@ article p {
   }
 }
 
-.highlight {
+#highlight {
   background-color: var(--darker-grey);
   color: var(--white);
 }
 
-.highlight a {
+#highlight a {
   color: var(--light-blue);
 }
 
-.highlight a:hover,
-.highlight a:active,
-.highlight a:focus {
+#highlight a:hover,
+#highlight a:active,
+#highlight a:focus {
   color: var(--lighter-blue);
 }
 
@@ -411,9 +411,49 @@ article p {
 }
 
 @media only screen and (min-width: 769px) {
-  .highlight {
-    padding: 10% 20%;
+  #highlight {
+    --y: 0;
+    --borderX: 0;
+    --borderY: 0;
+    --starY: 0;
+
+    padding: 10%;
+    margin: 10%;
     text-align: center;
+    border-radius: 100px;
+    border: 2px solid transparent;
+    background: linear-gradient(
+          to bottom,
+          black 0%,
+          var(--darker-grey) var(--y),
+          black 100%
+        )
+        padding-box,
+      radial-gradient(
+          farthest-corner at var(--borderX) var(--borderY),
+          var(--lighter-grey),
+          var(--darker-grey)
+        )
+        border-box;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--box-shadow) inset;
+  }
+
+  #highlight::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    border-radius: 100px;
+    top: -20vh;
+    left: 0;
+    opacity: 0.2;
+    background-image: url(../img/star-background.webp);
+    background-size: cover;
+    background-position: center var(--starY);
+    pointer-events: none;
   }
 
   .intro {
@@ -492,7 +532,7 @@ article p {
   }
 
   .data-flow-diagram .label-background {
-    fill: var(--dark-grey);
+    fill: var(--darker-grey);
   }
 
   .data-flow-diagram .diagram-node {

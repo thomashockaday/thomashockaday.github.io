@@ -64,7 +64,7 @@
       <div class="layer gradient gradient-blue" role="presentation"></div>
     </header>
     <main>
-      <section class="container highlight">
+      <section class="container" id="highlight">
         <p>
           <strong>Hi!</strong> My name is Thomas and I am a software developer
           with a background in design. I am currently working as a Tech Lead for
@@ -212,45 +212,62 @@
     </footer>
 
     <script>
-      let ticking = false;
-      const layers = document.getElementsByClassName("layer");
+      document.body.onload = function () {
+        let ticking = false;
+        const layers = document.getElementsByClassName("layer");
+        const highlight = document.getElementById("highlight");
 
-      function handleScroll() {
-        if (ticking) {
-          return;
-        }
-
-        window.requestAnimationFrame(() => {
-          const percentageScrolled = (
-            (window.scrollY / window.innerHeight) *
-            100
-          ).toFixed(2);
-
-          for (let i = 0; i < layers.length; i++) {
-            const id = layers[i].id;
-
-            if (!id) {
-              continue;
-            }
-
-            const layer = id.slice(-1);
-
-            if (!layer || layer === "1") {
-              continue;
-            }
-
-            layers[i].style.backgroundPositionY = `${
-              100 - percentageScrolled * layer
-            }%`;
+        function handleScroll() {
+          if (ticking) {
+            return;
           }
 
-          ticking = false;
+          window.requestAnimationFrame(() => {
+            const percentageScrolled = (
+              (window.scrollY / window.innerHeight) *
+              100
+            ).toFixed(2);
+
+            for (let i = 0; i < layers.length; i++) {
+              const id = layers[i].id;
+
+              if (!id) {
+                continue;
+              }
+
+              const layer = id.slice(-1);
+
+              if (!layer || layer === "1") {
+                continue;
+              }
+
+              layers[i].style.backgroundPositionY = `${
+                100 - percentageScrolled * layer
+              }%`;
+            }
+
+            const y =
+              window.scrollY - highlight.offsetTop + window.innerHeight / 2;
+
+            highlight.style.setProperty("--y", `${y * 1.2}px`);
+            highlight.style.setProperty("--starY", `${-y / 10}px`);
+
+            ticking = false;
+          });
+
+          ticking = true;
+        }
+
+        window.addEventListener("mousemove", function (e) {
+          const x = e.pageX - highlight.offsetLeft;
+          const y = e.pageY - highlight.offsetTop;
+
+          highlight.style.setProperty("--borderX", `${x}px`);
+          highlight.style.setProperty("--borderY", `${y}px`);
         });
 
-        ticking = true;
-      }
-
-      document.addEventListener("scroll", handleScroll);
+        document.addEventListener("scroll", handleScroll);
+      };
     </script>
   </body>
 </html>
