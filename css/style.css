@@ -327,31 +327,31 @@ article p {
 
 #angel-layer-1 {
   z-index: 5;
-  background-image: url(../img/angel-layer-1.webp);
+  background-image: url(../img/angel-layer-1-1000.webp);
 }
 
 #angel-layer-2 {
   z-index: 4;
-  background-image: url(../img/angel-layer-2.webp);
+  background-image: url(../img/angel-layer-2-1000.webp);
   opacity: 0.7;
 }
 
 #angel-layer-3 {
   z-index: 3;
-  background-image: url(../img/angel-layer-3.webp);
+  background-image: url(../img/angel-layer-3-1000.webp);
   opacity: 0.4;
 }
 
 #angel-layer-4 {
   z-index: 2;
-  background-image: url(../img/angel-layer-4.webp);
+  background-image: url(../img/angel-layer-4-1000.webp);
   background-repeat: repeat-x;
   animation: drift 300s infinite;
 }
 
 #angel-layer-5 {
   z-index: 1;
-  background-image: url(../img/angel-layer-5.webp);
+  background-image: url(../img/angel-layer-5-1000.webp);
   opacity: 0.3;
 }
 
@@ -365,7 +365,7 @@ article p {
   }
 }
 
-#highlight {
+.bio {
   background-color: var(--darker-grey);
   color: var(--white);
 }
@@ -418,14 +418,13 @@ article p {
     --starY: 0;
 
     padding: 10%;
-    margin: 10%;
     text-align: center;
     border-radius: 100px;
     border: 2px solid transparent;
     background: linear-gradient(
           to right,
           black 0%,
-          var(--darker-grey) var(--y),
+          var(--dark-grey) var(--y),
           black 100%
         )
         padding-box,
@@ -437,20 +436,20 @@ article p {
         border-box;
     position: relative;
     overflow: hidden;
-    box-shadow: var(--box-shadow) inset;
+    box-shadow: var(--box-shadow) inset, var(--box-shadow);
   }
 
   #highlight::before {
     content: "";
     display: block;
     width: 100%;
-    height: 100vh;
+    height: 800px;
     position: absolute;
     border-radius: 100px;
-    top: -20vh;
+    top: -100px;
     left: 0;
-    opacity: 0.2;
-    background-image: url(../img/star-background.webp);
+    opacity: 0.3;
+    background-image: url(../img/star-background-1000.webp);
     background-size: cover;
     background-position: center var(--starY);
     pointer-events: none;
@@ -461,7 +460,46 @@ article p {
   }
 }
 
+@media only screen and (min-width: 1200px) {
+  #highlight::before {
+    background-image: url(../img/star-background-2500.webp);
+  }
+
+  #angel-layer-1 {
+    background-image: url(../img/angel-layer-1-2500.webp);
+  }
+
+  #angel-layer-2 {
+    background-image: url(../img/angel-layer-2-2500.webp);
+  }
+
+  #angel-layer-3 {
+    background-image: url(../img/angel-layer-3-2500.webp);
+  }
+
+  #angel-layer-4 {
+    background-image: url(../img/angel-layer-4-2500.webp);
+  }
+
+  #angel-layer-5 {
+    background-image: url(../img/angel-layer-5-2500.webp);
+  }
+}
+
 @media only print {
+  html {
+    font-size: 10pt;
+  }
+
+  .layers,
+  .layer {
+    height: initial;
+  }
+
+  .layer {
+    position: static;
+  }
+
   h1 {
     font-size: 2.2rem;
   }

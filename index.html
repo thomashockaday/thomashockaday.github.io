@@ -49,7 +49,7 @@
     />
   </head>
   <body>
-    <header id="top" class="layers">
+    <header class="layers" id="top">
       <div class="layer" id="angel-layer-1" role="presentation"></div>
       <div class="layer intro">
         <div class="container">
@@ -64,8 +64,8 @@
       <div class="layer gradient gradient-blue" role="presentation"></div>
     </header>
     <main>
-      <section class="container" id="highlight">
-        <p>
+      <section class="container bio">
+        <p id="highlight">
           <strong>Hi!</strong> My name is Thomas and I am a software developer
           with a background in design. I am currently working as a Tech Lead for
           <a
@@ -249,7 +249,7 @@
             const y =
               window.scrollY - highlight.offsetTop + window.innerHeight / 2;
 
-            highlight.style.setProperty("--y", `${y * 1.2}px`);
+            highlight.style.setProperty("--y", `${y * 1.2 + 100}px`);
             highlight.style.setProperty("--starY", `${-y / 10}px`);
 
             ticking = false;
