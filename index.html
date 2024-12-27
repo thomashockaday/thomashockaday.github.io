@@ -74,8 +74,9 @@
             rel="noopener noreferrer"
             >Intelligence Fusion</a
           >, who provide data on enhanced threat intelligence and situational
-          awareness to help protect people, assets and reputations. You can see
-          more information on
+          awareness to help protect people, assets and reputations. I also love
+          creating smaller, light-hearted projects for pure entertainment. You
+          can see more information on
           <a href="https://thomashockaday.github.io/cv">my CV</a>. You can also
           find me on
           <a
@@ -93,11 +94,12 @@
           >.
         </p>
       </section>
-      <section class="container gradient gradient-grey">
-        <h2>Projects</h2>
 
-        <div class="grid card-list">
-          <div class="grid-cell card">
+      <section class="container gradient gradient-grey">
+        <h2 id="projects">Projects</h2>
+
+        <ul class="grid card-list">
+          <li class="grid-cell card">
             <img
               class="card-header"
               src="img/bingo-machine.webp"
@@ -118,8 +120,8 @@
                 basically any device. Built with React, Vite and TypeScript.
               </p>
             </div>
-          </div>
-          <div class="grid-cell card">
+          </li>
+          <li class="grid-cell card">
             <img
               class="card-header"
               src="img/coinbase-recap.webp"
@@ -141,8 +143,8 @@
                 Tailwind.
               </p>
             </div>
-          </div>
-          <div class="grid-cell card">
+          </li>
+          <li class="grid-cell card">
             <img
               class="card-header"
               src="img/docker-lemp.webp"
@@ -164,16 +166,44 @@
                 XAMPP and WampServer.
               </p>
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </section>
 
       <section class="container">
-        <h2>Writing</h2>
+        <h2 id="sandbox">Sandbox</h2>
+
+        <ul class="grid card-list">
+          <li class="grid-cell card">
+            <video autoplay loop muted playsinline class="card-header">
+              <source src="video/kill-the-parrot.mp4" type="video/mp4" />
+              <source src="video/kill-the-parrot.webm" type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+            <div class="card-body">
+              <h3>
+                <a
+                  href="https://thomashockaday.github.io/kill-the-parrot/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Kill the Parrot</a
+                >
+              </h3>
+              <p>
+                The party parrots are running out of control. They need to be
+                stopped! Point-and-click shooter with no way to win.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="container">
+        <h2 id="writing">Writing</h2>
 
         <ul>
           <li>
-            <a href="articles/2024-07-10-application-layers/"
+            <a href="articles/2024-07-10-application-layers/index.html"
               >Designing application layers</a
             >
             <time datetime="2024-07-10 16:00">(July 2024)</time>
@@ -190,7 +220,7 @@
             <time datetime="2023-09-20 12:00">(September 2023)</time>
           </li>
           <li>
-            <a href="articles/2022-10-11-react-notifications/"
+            <a href="articles/2022-10-11-react-notifications/index.html"
               >Simple notifications with React</a
             >
             <time datetime="2022-10-11 17:00">(October 2022)</time>

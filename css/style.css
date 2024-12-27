@@ -93,6 +93,10 @@ ul {
   list-style-type: square;
 }
 
+ul.grid {
+  list-style-type: none;
+}
+
 footer {
   text-align: right;
   padding: 5% 10%;
@@ -111,15 +115,11 @@ footer {
   border-left: 1px solid var(--dark-blue);
 }
 
-video,
+.article-video,
 .article-image {
   display: block;
   max-width: 100%;
   margin: 3rem auto;
-}
-
-video,
-.shadow {
   box-shadow: var(--box-shadow);
 }
 
@@ -194,7 +194,7 @@ article p {
 
 /* 3. Base Classes */
 .container {
-  padding: 10%;
+  padding: 8% 10%;
 }
 
 .gradient {
@@ -533,11 +533,13 @@ article p {
     color: var(--lighter-blue);
   }
 
-  img {
+  img,
+  video {
     opacity: 0.8;
   }
 
-  img:hover {
+  img:hover,
+  video:hover {
     opacity: 1;
   }
 
