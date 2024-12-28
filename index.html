@@ -50,7 +50,11 @@
   </head>
   <body>
     <header class="layers" id="top">
-      <div class="layer" id="angel-layer-1" role="presentation"></div>
+      <div
+        class="layer layer-no-scroll"
+        id="angel-layer-1"
+        role="presentation"
+      ></div>
       <div class="layer intro">
         <div class="container">
           <h1>Thomas Hockaday</h1>
@@ -267,7 +271,7 @@
 
               const layer = id.slice(-1);
 
-              if (!layer || layer === "1") {
+              if (!layer || layers[i].classList.contains("layer-no-scroll")) {
                 continue;
               }
 
