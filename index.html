@@ -68,35 +68,44 @@
       <div class="layer gradient gradient-blue" role="presentation"></div>
     </header>
     <main>
-      <section class="container bio">
-        <p id="highlight">
-          <strong>Hi!</strong> My name is Thomas and I am a software developer
-          with a background in design. I am currently working as a Tech Lead for
-          <a
-            href="https://intelligencefusion.co.uk"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Intelligence Fusion</a
-          >, who provide data on enhanced threat intelligence and situational
-          awareness to help protect people, assets and reputations. I also love
-          creating smaller, light-hearted projects for pure entertainment. You
-          can see more information on
-          <a href="https://thomashockaday.github.io/cv">my CV</a>. You can also
-          find me on
-          <a
-            href="https://github.com/thomashockaday"
-            target="_blank"
-            rel="noopener noreferrer"
-            >GitHub</a
-          >
-          and
-          <a
-            href="https://www.linkedin.com/in/thomas-hockaday-862953b3/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >LinkedIn</a
-          >.
-        </p>
+      <div class="divider" role="presentation"></div>
+      <section class="layers">
+        <div class="layer" id="bio-layer-1" role="presentation"></div>
+        <div
+          class="layer layer-no-scroll bio"
+          id="bio-layer-2"
+          role="presentation"
+        >
+          <p class="container">
+            <strong>Hi!</strong> My name is Thomas and I am a software developer
+            with a background in design. I am currently working as a Tech Lead
+            for
+            <a
+              href="https://intelligencefusion.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Intelligence Fusion</a
+            >, who provide data on enhanced threat intelligence and situational
+            awareness to help protect people, assets and reputations. I also
+            love creating smaller, light-hearted projects for pure
+            entertainment. You can see more information on
+            <a href="https://thomashockaday.github.io/cv">my CV</a>. You can
+            also find me on
+            <a
+              href="https://github.com/thomashockaday"
+              target="_blank"
+              rel="noopener noreferrer"
+              >GitHub</a
+            >
+            and
+            <a
+              href="https://www.linkedin.com/in/thomas-hockaday-862953b3/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn</a
+            >.
+          </p>
+        </div>
       </section>
 
       <section class="container gradient gradient-grey">
@@ -249,7 +258,6 @@
       document.body.onload = function () {
         let ticking = false;
         const layers = document.getElementsByClassName("layer");
-        const highlight = document.getElementById("highlight");
 
         function handleScroll() {
           if (ticking) {
@@ -280,25 +288,11 @@
               }%`;
             }
 
-            const y =
-              window.scrollY - highlight.offsetTop + window.innerHeight / 2;
-
-            highlight.style.setProperty("--y", `${y * 1.2 + 100}px`);
-            highlight.style.setProperty("--starY", `${-y / 10}px`);
-
             ticking = false;
           });
 
           ticking = true;
         }
-
-        window.addEventListener("mousemove", function (e) {
-          const x = e.pageX - highlight.offsetLeft;
-          const y = e.pageY - highlight.offsetTop;
-
-          highlight.style.setProperty("--borderX", `${x}px`);
-          highlight.style.setProperty("--borderY", `${y}px`);
-        });
 
         document.addEventListener("scroll", handleScroll);
       };

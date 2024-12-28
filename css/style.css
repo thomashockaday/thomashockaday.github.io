@@ -365,18 +365,35 @@ article p {
   }
 }
 
-.bio {
-  background-color: var(--darker-grey);
-  color: var(--white);
+.divider {
+  height: 10vw;
 }
 
-#highlight a {
+#bio-layer-1 {
+  opacity: 0.2;
+  background-image: url(../img/star-background-2500.webp);
+}
+
+#bio-layer-2 {
+  z-index: 2;
+  background-image: url(../img/bio-background-1000.webp);
+  background-size: contain;
+  background-repeat: repeat-x;
+}
+
+.bio {
+  color: var(--white);
+  display: flex;
+  align-items: center;
+}
+
+.bio a {
   color: var(--light-blue);
 }
 
-#highlight a:hover,
-#highlight a:active,
-#highlight a:focus {
+.bio a:hover,
+.bio a:active,
+.bio a:focus {
   color: var(--lighter-blue);
 }
 
@@ -411,60 +428,17 @@ article p {
 }
 
 @media only screen and (min-width: 769px) {
-  #highlight {
-    --y: 0;
-    --borderX: 0;
-    --borderY: 0;
-    --starY: 0;
-
-    padding: 10%;
-    text-align: center;
-    border-radius: 100px;
-    border: 2px solid transparent;
-    background: linear-gradient(
-          to right,
-          black 0%,
-          var(--dark-grey) var(--y),
-          black 100%
-        )
-        padding-box,
-      radial-gradient(
-          farthest-corner at var(--borderX) var(--borderY),
-          var(--lighter-grey),
-          var(--darker-grey)
-        )
-        border-box;
-    position: relative;
-    overflow: hidden;
-    box-shadow: var(--box-shadow) inset, var(--box-shadow);
-  }
-
-  #highlight::before {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 800px;
-    position: absolute;
-    border-radius: 100px;
-    top: -100px;
-    left: 0;
-    opacity: 0.3;
-    background-image: url(../img/star-background-1000.webp);
-    background-size: cover;
-    background-position: center var(--starY);
-    pointer-events: none;
-  }
-
   .intro {
     height: 40vw;
+  }
+
+  .bio .container {
+    text-align: center;
+    padding: 20%;
   }
 }
 
 @media only screen and (min-width: 1200px) {
-  #highlight::before {
-    background-image: url(../img/star-background-2500.webp);
-  }
-
   #angel-layer-1 {
     background-image: url(../img/angel-layer-1-2500.webp);
   }
@@ -483,6 +457,14 @@ article p {
 
   #angel-layer-5 {
     background-image: url(../img/angel-layer-5-2500.webp);
+  }
+
+  #bio-layer-1 {
+    background-image: url(../img/star-background-2500.webp);
+  }
+
+  #bio-layer-2 {
+    background-image: url(../img/bio-background-2500.webp);
   }
 }
 
