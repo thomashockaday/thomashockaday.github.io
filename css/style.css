@@ -225,9 +225,9 @@ article p {
 .gradient-grey::before {
   background-color: var(--darker-grey);
   background-image: linear-gradient(
-    195deg,
-    var(--dark-grey) 10%,
-    var(--darker-grey) 90%
+    180deg,
+    var(--darker-grey) 10%,
+    var(--dark-grey) 90%
   );
 }
 
@@ -367,34 +367,26 @@ article p {
 
 .divider {
   height: 10vw;
+  background-color: var(--darker-grey);
 }
 
 #bio-layer-1 {
+  z-index: 2;
   opacity: 0.2;
-  background-image: url(../img/star-background-2500.webp);
+  background-image: url(../img/star-background-1000.webp);
 }
 
 #bio-layer-2 {
-  z-index: 2;
+  background-color: var(--lighter-grey);
+}
+
+#bio-layer-3 {
+  z-index: 3;
   background-image: url(../img/bio-background-1000.webp);
   background-size: contain;
   background-repeat: repeat-x;
-}
-
-.bio {
-  color: var(--white);
   display: flex;
   align-items: center;
-}
-
-.bio a {
-  color: var(--light-blue);
-}
-
-.bio a:hover,
-.bio a:active,
-.bio a:focus {
-  color: var(--lighter-blue);
 }
 
 /* 6. Media Queries */
@@ -432,7 +424,7 @@ article p {
     height: 40vw;
   }
 
-  .bio .container {
+  #bio-layer-3 .container {
     text-align: center;
     padding: 20%;
   }
@@ -463,7 +455,7 @@ article p {
     background-image: url(../img/star-background-2500.webp);
   }
 
-  #bio-layer-2 {
+  #bio-layer-3 {
     background-image: url(../img/bio-background-2500.webp);
   }
 }
@@ -539,6 +531,14 @@ article p {
 
   .gradient-grey::before {
     background-image: none;
+  }
+
+  #bio-layer-2 {
+    background-color: unset;
+  }
+
+  #bio-layer-3 {
+    color: var(--white);
   }
 
   .gradient-blue::after {
