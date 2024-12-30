@@ -373,6 +373,7 @@ article p {
 .bio-layers,
 .bio-layers .layer {
   height: 60vw;
+  min-height: 700px;
 }
 
 #bio-layer-1 {
@@ -410,11 +411,6 @@ article p {
 
   .divider {
     height: 0;
-  }
-
-  .bio-layers,
-  .bio-layers .layer {
-    height: 110vw;
   }
 }
 
