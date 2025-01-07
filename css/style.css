@@ -9,6 +9,9 @@
  * 4. Components
  *    4.1. Grids
  *    4.2. Cards
+ *    4.3. Code Blocks
+ *    4.4. Article Meta
+ *    4.5. Data Flow Diagrams
  * 5. Section Specific
  * 6. Media Queries
  */
@@ -23,6 +26,7 @@
   --darker-grey: #101518;
   --lighter-grey: #a9bcc4;
   --box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+  --border-radius: 0.3rem;
 }
 
 /* 1. Simple Reset */
@@ -93,88 +97,30 @@ ul {
   list-style-type: square;
 }
 
-ul.grid {
-  list-style-type: none;
+cite a {
+  color: inherit;
+}
+
+blockquote::before {
+  content: '"';
+  font-family: cursive;
+  font-size: 8rem;
+  position: absolute;
+  top: -6rem;
+  left: 0;
+  opacity: 0.7;
+}
+
+figcaption {
+  padding: 1rem 2rem;
+  margin-top: -3rem;
+  text-align: center;
+  font-size: 0.9rem;
 }
 
 footer {
   text-align: right;
   padding: 5% 10%;
-}
-
-.article-meta {
-  font-size: 0.9rem;
-  color: var(--dark-grey);
-  margin-top: 1.2em;
-}
-
-.article-meta #time-to-read {
-  display: none;
-  margin-left: 1rem;
-  padding-left: 1rem;
-  border-left: 1px solid var(--dark-blue);
-}
-
-.article-video,
-.article-image {
-  display: block;
-  max-width: 100%;
-  margin: 3rem auto;
-  box-shadow: var(--box-shadow);
-}
-
-.data-flow-diagram {
-  width: 100%;
-  font: inherit;
-}
-
-.data-flow-diagram text {
-  fill: currentColor;
-  stroke: currentColor;
-  stroke-width: 0.25px;
-  text-anchor: middle;
-}
-
-.data-flow-diagram path {
-  stroke: var(--darker-grey);
-  stroke-miterlimit: 4px;
-  stroke-linejoin: miter;
-  stroke-dasharray: none;
-  stroke-linecap: butt;
-  stroke-dashoffset: 0;
-}
-
-.data-flow-diagram .arrow-head {
-  fill: currentColor;
-}
-
-.data-flow-diagram .label-background {
-  stroke: none;
-  fill: var(--white);
-}
-
-.data-flow-diagram .diagram-node {
-  stroke-width: 2px;
-  fill: var(--white);
-  stroke: currentColor;
-}
-
-.data-flow-diagram .diagram-input rect {
-  fill: currentColor;
-}
-
-.data-flow-diagram .diagram-input text {
-  fill: var(--white);
-  stroke: var(--white);
-}
-
-.data-flow-diagram .diagram-output rect {
-  fill: var(--dark-blue);
-}
-
-.data-flow-diagram .diagram-output text {
-  fill: var(--white);
-  stroke: var(--white);
 }
 
 article,
@@ -232,9 +178,9 @@ article p {
 }
 
 .info {
-  border-radius: 0.3em;
+  border-radius: var(--border-radius);
   border: 1px dashed var(--dark-blue);
-  padding: 10px;
+  padding: 1rem;
   background-color: rgba(35, 110, 168, 0.15);
 }
 
@@ -246,22 +192,6 @@ article p {
   height: 8px;
 }
 
-.codeblock pre[class*="language-"] {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  margin-top: 0;
-}
-
-.codeblock-title {
-  padding: 0.5em 1em;
-  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  background-color: #32332c;
-  color: #fff;
-  border-top-left-radius: 0.3em;
-  border-top-right-radius: 0.3em;
-  border-bottom: 1px solid #494b40;
-}
-
 /* 4. Components */
 /* 4.1. Grids */
 .grid {
@@ -270,6 +200,7 @@ article p {
   grid-column-gap: 5%;
   grid-row-gap: 3rem;
   font-size: 1rem;
+  list-style-type: none;
 }
 
 .grid-cell {
@@ -292,6 +223,121 @@ article p {
 
 .card-body a {
   color: currentColor;
+}
+
+/* 4.3. Code Blocks */
+.codeblock pre[class*="language-"] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-top: 0;
+}
+
+.codeblock-title {
+  padding: 0.5em 1em;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  background-color: #32332c;
+  color: #fff;
+  border-top-left-radius: 0.3em;
+  border-top-right-radius: 0.3em;
+  border-bottom: 1px solid #494b40;
+}
+
+/* 4.4. Article Meta */
+.article-meta {
+  font-size: 0.9rem;
+  color: var(--dark-grey);
+  margin-top: 1.2em;
+}
+
+.article-meta #time-to-read {
+  display: none;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--dark-blue);
+}
+
+.article-video,
+.article-image {
+  display: block;
+  max-width: 100%;
+  margin: 3rem auto;
+  box-shadow: var(--box-shadow);
+}
+
+.quote {
+  border-radius: var(--border-radius);
+  padding: 3rem;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.quote p {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+figure,
+.quote {
+  box-shadow: var(--box-shadow);
+}
+
+figure .article-image {
+  box-shadow: none;
+}
+
+/* 4.5. Data Flow Diagrams */
+.data-flow-diagram {
+  width: 100%;
+  font: inherit;
+}
+
+.data-flow-diagram text {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 0.25px;
+  text-anchor: middle;
+}
+
+.data-flow-diagram path {
+  stroke: var(--darker-grey);
+  stroke-miterlimit: 4px;
+  stroke-linejoin: miter;
+  stroke-dasharray: none;
+  stroke-linecap: butt;
+  stroke-dashoffset: 0;
+}
+
+.data-flow-diagram .arrow-head {
+  fill: currentColor;
+}
+
+.data-flow-diagram .label-background {
+  stroke: none;
+  fill: var(--white);
+}
+
+.data-flow-diagram .diagram-node {
+  stroke-width: 2px;
+  fill: var(--white);
+  stroke: currentColor;
+}
+
+.data-flow-diagram .diagram-input rect {
+  fill: currentColor;
+}
+
+.data-flow-diagram .diagram-input text {
+  fill: var(--white);
+  stroke: var(--white);
+}
+
+.data-flow-diagram .diagram-output rect {
+  fill: var(--dark-blue);
+}
+
+.data-flow-diagram .diagram-output text {
+  fill: var(--white);
+  stroke: var(--white);
 }
 
 /* 5. Section Specific */
@@ -525,6 +571,11 @@ article p {
   img:hover,
   video:hover {
     opacity: 1;
+  }
+
+  figcaption,
+  .quote {
+    background-color: var(--dark-grey);
   }
 
   .gradient-blue::before {
