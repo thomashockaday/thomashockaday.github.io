@@ -90,12 +90,17 @@
           <h1>Simple notifications with React</h1>
 
           <div class="article-meta">
-            <span>
-              Posted on
-              <time datetime="2022-10-11 17:00">11th October 2022</time>
-            </span>
-
-            <span id="time-to-read"></span>
+            <div>
+              <span class="icon calendar-icon" role="presentation"></span>
+              <span>
+                Posted on
+                <time datetime="2022-10-11 17:00">11th October 2022</time>
+              </span>
+            </div>
+            <div>
+              <span class="icon clock-icon" role="presentation"></span>
+              <span id="time-to-read"></span>
+            </div>
           </div>
         </header>
         <main>
@@ -919,10 +924,12 @@ export default Home;</code></pre>
 
     <script defer src="../../js/prism.min.js"></script>
     <script src="../../js/main.js"></script>
+    <script src="../../js/icons.js"></script>
 
     <script>
       document.body.onload = function () {
         calculateTimeToRead();
+        setIcons();
       };
     </script>
   </body>

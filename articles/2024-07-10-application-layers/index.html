@@ -89,12 +89,17 @@
           <h1>Designing application layers</h1>
 
           <div class="article-meta">
-            <span>
-              Posted on
-              <time datetime="2024-07-10 16:00">10th July 2024</time>
-            </span>
-
-            <span id="time-to-read"></span>
+            <div>
+              <span class="icon calendar-icon" role="presentation"></span>
+              <span>
+                Posted on
+                <time datetime="2024-07-10 16:00">10th July 2024</time>
+              </span>
+            </div>
+            <div>
+              <span class="icon clock-icon" role="presentation"></span>
+              <span id="time-to-read"></span>
+            </div>
           </div>
         </header>
         <main>
@@ -752,10 +757,12 @@
     </footer>
 
     <script src="../../js/main.js"></script>
+    <script src="../../js/icons.js"></script>
 
     <script>
       document.body.onload = function () {
         calculateTimeToRead();
+        setIcons();
       };
     </script>
   </body>
