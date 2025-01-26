@@ -12,6 +12,7 @@
  *    4.3. Code Blocks
  *    4.4. Article Meta
  *    4.5. Data Flow Diagrams
+ *    4.6. Tags
  * 5. Section Specific
  * 6. Media Queries
  */
@@ -24,6 +25,7 @@
   --lighter-blue: #8befef;
   --dark-grey: #20292f;
   --darker-grey: #101518;
+  --light-grey: #7e9aa6;
   --lighter-grey: #a9bcc4;
   --box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
   --border-radius: 0.3rem;
@@ -353,6 +355,31 @@ figure .article-image {
 .data-flow-diagram .diagram-output text {
   fill: var(--white);
   stroke: var(--white);
+}
+
+/* 4.6. Tags */
+ul.tags {
+  list-style: none;
+  font-size: 0.85rem;
+  color: var(--lighter-grey);
+  margin: 1rem 0;
+}
+
+ul.tags li {
+  display: inline;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--light-grey);
+  background-color: var(--dark-grey);
+  line-height: 3;
+  box-shadow: var(--box-shadow);
+}
+
+ul.tags li::before {
+  content: "#";
+  color: var(--light-grey);
+  margin-right: 0.25rem;
 }
 
 /* 5. Section Specific */
