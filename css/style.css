@@ -99,6 +99,10 @@ ul {
   list-style-type: square;
 }
 
+ul.grid {
+  margin: 0 0.2rem;
+}
+
 cite a {
   color: inherit;
 }
@@ -207,7 +211,7 @@ article p {
 
 .grid-cell {
   width: auto;
-  margin: 0;
+  margin: 2rem 0 0 0;
 }
 
 /* 4.2. Cards */
@@ -484,6 +488,12 @@ ul.tags li::before {
 }
 
 /* 6. Media Queries */
+@media only screen and (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media only screen and (max-width: 768px) {
   h1 {
     font-size: 2.5rem;
@@ -494,7 +504,7 @@ ul.tags li::before {
   }
 
   .grid-cell {
-    margin: 0;
+    margin: 2rem 0;
   }
 
   .divider {
