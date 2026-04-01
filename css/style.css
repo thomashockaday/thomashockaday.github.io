@@ -404,8 +404,11 @@ ul.tags li::before {
   border: none;
   color: currentColor;
   width: 50px;
+  font-size: 0;
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
     border: none;
     color: currentColor;
   }
