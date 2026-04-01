@@ -368,13 +368,14 @@ ul.tags {
   list-style: none;
   font-size: 0.85rem;
   color: var(--lighter-grey);
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
 ul.tags li {
   display: inline;
   padding: 0.5rem 1rem;
   margin-right: 0.5rem;
+  line-height: 3;
   border-radius: var(--border-radius);
   border: 1px solid var(--light-grey);
   background-color: var(--dark-grey);
@@ -564,37 +565,6 @@ ul.tags li::before {
 
   #angel-layer-5 {
     background-image: url(../img/angel-layer-5-2500.webp);
-  }
-}
-
-@media only print {
-  html {
-    font-size: 10pt;
-  }
-
-  .layers,
-  .layer {
-    height: initial;
-  }
-
-  .layer {
-    position: static;
-  }
-
-  h1 {
-    font-size: 2.2rem;
-  }
-
-  h2 {
-    font-size: 1.8rem;
-  }
-
-  video {
-    display: none;
-  }
-
-  .container {
-    padding: 3%;
   }
 }
 

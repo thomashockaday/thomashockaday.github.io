@@ -1,0 +1,41 @@
+@media only print {
+  html {
+    font-size: 10pt;
+  }
+
+  .layers,
+  .layer {
+    height: initial;
+  }
+
+  .layer {
+    position: static;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  video {
+    display: none;
+  }
+
+  .container {
+    padding: 3%;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+
+  ul.tags li {
+    background-color: unset;
+    box-shadow: none;
+    color: currentColor;
+    border: none;
+  }
+}
