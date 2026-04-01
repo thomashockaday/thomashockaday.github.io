@@ -53,9 +53,13 @@ html {
 }
 
 /* 2. Semantic Markup */
+:root {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Montserrat", sans-serif;
-  line-height: 2;
+  line-height: 1.9;
   color: var(--darker-grey);
   background: var(--white);
 }
@@ -364,7 +368,7 @@ ul.tags {
   list-style: none;
   font-size: 0.85rem;
   color: var(--lighter-grey);
-  margin: 1rem 0;
+  margin: 2rem 0;
 }
 
 ul.tags li {
@@ -374,7 +378,6 @@ ul.tags li {
   border-radius: var(--border-radius);
   border: 1px solid var(--light-grey);
   background-color: var(--dark-grey);
-  line-height: 3;
   box-shadow: var(--box-shadow);
 }
 
@@ -397,11 +400,40 @@ ul.tags li::before {
   z-index: 5;
   color: var(--white);
   text-shadow: rgba(0, 0, 0, 0.2) 0px 8px 20px;
+  padding-top: 5%;
 }
 
 .bio {
-  margin-top: 0.5rem;
+  margin: 0.5rem 0;
   max-width: 700px;
+}
+
+.scroll-indicator {
+  display: block;
+  margin-top: 1rem;
+  animation: blink 3s infinite;
+  border: none;
+  color: currentColor;
+  width: 50px;
+
+  &:hover {
+    border: none;
+    color: currentColor;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 0.1;
+  }
 }
 
 .layers {
