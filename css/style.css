@@ -207,10 +207,9 @@ article p {
 
 /* 4.2. Cards */
 .card-header {
-  background-size: cover;
-  background-position: center;
   display: block;
   width: 100%;
+  height: auto;
   box-shadow: var(--box-shadow);
 }
 
