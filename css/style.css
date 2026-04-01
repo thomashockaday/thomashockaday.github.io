@@ -67,11 +67,9 @@ h1 {
 
 h2 {
   font-size: 2.3rem;
-  margin-bottom: 1%;
 }
 
-h3,
-.subtitle {
+h3 {
   font-size: 1.4rem;
   font-weight: normal;
 }
@@ -169,8 +167,8 @@ article p {
   background-color: var(--dark-blue);
   background-image: linear-gradient(
     195deg,
-    var(--light-blue) 10%,
-    var(--dark-blue) 90%
+    var(--dark-blue) 10%,
+    var(--dark-grey) 90%
   );
 }
 
@@ -398,7 +396,12 @@ ul.tags li::before {
   justify-content: center;
   z-index: 5;
   color: var(--white);
-  text-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+  text-shadow: rgba(0, 0, 0, 0.2) 0px 8px 20px;
+}
+
+.bio {
+  margin-top: 0.5rem;
+  max-width: 700px;
 }
 
 .layers {
@@ -457,36 +460,6 @@ ul.tags li::before {
   }
 }
 
-.divider {
-  height: 10vw;
-  background-color: var(--darker-grey);
-}
-
-.bio-layers,
-.bio-layers .layer {
-  height: 60vw;
-  min-height: 850px;
-}
-
-#bio-layer-1 {
-  z-index: 2;
-  opacity: 0.3;
-  background-image: url(../img/star-background-1000.webp);
-}
-
-#bio-layer-2 {
-  background-color: var(--lighter-grey);
-}
-
-#bio-layer-3 {
-  z-index: 3;
-  background-image: url(../img/bio-background-1000.webp);
-  background-size: cover;
-  background-repeat: repeat-x;
-  display: flex;
-  align-items: center;
-}
-
 /* 6. Media Queries */
 @media only screen and (max-width: 1100px) {
   .grid {
@@ -505,10 +478,6 @@ ul.tags li::before {
 
   .grid-cell {
     margin: 2rem 0;
-  }
-
-  .divider {
-    height: 0;
   }
 }
 
@@ -542,11 +511,6 @@ ul.tags li::before {
   .intro {
     height: 40vw;
   }
-
-  #bio-layer-3 .container {
-    text-align: center;
-    padding: 20%;
-  }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -568,14 +532,6 @@ ul.tags li::before {
 
   #angel-layer-5 {
     background-image: url(../img/angel-layer-5-2500.webp);
-  }
-
-  #bio-layer-1 {
-    background-image: url(../img/star-background-2500.webp);
-  }
-
-  #bio-layer-3 {
-    background-image: url(../img/bio-background-2500.webp);
   }
 }
 
@@ -641,32 +597,12 @@ ul.tags li::before {
     background-color: var(--dark-grey);
   }
 
-  .gradient-blue::before {
-    background-image: linear-gradient(
-      195deg,
-      var(--dark-blue) 10%,
-      var(--dark-grey) 90%
-    );
-  }
-
   #angel-layer-5 {
     opacity: 0.7;
   }
 
   .gradient-grey::before {
     background-image: none;
-  }
-
-  #bio-layer-2 {
-    background-color: unset;
-  }
-
-  #bio-layer-3 {
-    color: var(--white);
-  }
-
-  .gradient-blue::after {
-    background-color: transparent;
   }
 
   .article-meta {
