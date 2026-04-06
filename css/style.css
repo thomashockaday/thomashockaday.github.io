@@ -392,6 +392,10 @@ ul.tags li::before {
   color: var(--white);
   text-shadow: rgba(0, 0, 0, 0.2) 0px 8px 20px;
   padding-top: 5%;
+
+  a {
+    color: var(--lighter-blue);
+  }
 }
 
 .bio {
@@ -404,7 +408,6 @@ ul.tags li::before {
   margin-top: 1rem;
   animation: blink 3s infinite;
   border: none;
-  color: currentColor;
   width: 50px;
   font-size: 0;
 
@@ -412,7 +415,10 @@ ul.tags li::before {
   &:active,
   &:focus {
     border: none;
-    color: currentColor;
+  }
+
+  svg {
+    fill: var(--white);
   }
 }
 
