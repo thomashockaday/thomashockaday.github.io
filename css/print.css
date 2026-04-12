@@ -5,11 +5,8 @@
 
   .layers,
   .layer {
-    height: initial;
-  }
-
-  .layer {
-    position: static;
+    height: auto;
+    min-height: none;
   }
 
   h1 {
@@ -32,10 +29,13 @@
     display: none;
   }
 
+  ul.tags {
+    color: inherit;
+  }
+
   ul.tags li {
-    background-color: unset;
+    background-color: none;
     box-shadow: none;
-    color: currentColor;
     border: none;
   }
 }
