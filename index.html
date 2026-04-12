@@ -25,13 +25,8 @@
 
     <link href="https://thomashockaday.github.io" rel="canonical" />
   </head>
-  <body>
-    <header class="layers" id="top">
-      <div
-        class="layer layer-no-scroll"
-        id="angel-layer-1"
-        role="presentation"
-      ></div>
+  <body class="bg-dark">
+    <header class="layers gradient gradient-blue" id="top">
       <div class="layer intro">
         <div class="container">
           <h1>Hi, I'm Thomas</h1>
@@ -82,11 +77,10 @@
       <div class="layer" id="angel-layer-3" role="presentation"></div>
       <div class="layer" id="angel-layer-4" role="presentation"></div>
       <div class="layer" id="angel-layer-5" role="presentation"></div>
-      <div class="layer gradient gradient-blue" role="presentation"></div>
     </header>
 
     <main>
-      <section class="container gradient gradient-grey">
+      <section class="container">
         <h2 id="sandbox">Web Sandbox</h2>
 
         <ul class="grid card-list">
@@ -272,6 +266,7 @@
         </ul>
       </section>
     </main>
+
     <footer>
       <a href="#top">Back to Top</a>
     </footer>
@@ -301,7 +296,7 @@
 
               const layer = id.slice(-1);
 
-              if (!layer || layers[i].classList.contains("layer-no-scroll")) {
+              if (!layer) {
                 continue;
               }
 
