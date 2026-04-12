@@ -25,7 +25,6 @@
   --lighter-blue: #8bdefb;
   --darker-grey: #101518;
   --dark-grey: #20292f;
-  --grey: #32332c;
   --light-grey: #7e9aa6;
   --lighter-grey: #a9bcc4;
 
@@ -264,11 +263,11 @@ article p {
 .codeblock-title {
   padding: 0.5em 1em;
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  background-color: var(--grey);
+  background-color: var(--dark-grey);
   color: var(--white);
   border-top-left-radius: 0.3em;
   border-top-right-radius: 0.3em;
-  border-bottom: 1px solid var(--dark-grey);
+  border-bottom: 1px solid var(--darker-grey);
 }
 
 /* 4.4. Article Meta */
