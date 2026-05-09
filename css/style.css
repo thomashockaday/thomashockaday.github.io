@@ -54,6 +54,12 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   font-family: "Montserrat", sans-serif;
   line-height: 1.9;
