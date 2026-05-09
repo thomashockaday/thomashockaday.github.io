@@ -207,6 +207,12 @@ article p {
     &:hover {
       background-color: var(--dark-grey);
       border-color: var(--light-blue);
+
+      a {
+        span {
+          border-bottom: 1px solid var(--primary-highlight);
+        }
+      }
     }
 
     a {
